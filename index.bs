@@ -1,0 +1,261 @@
+<pre class='metadata'>
+Title:  Color API
+Status: ED
+Work Status: exploring
+Group: csswg
+ED: https://leaverou.github.io/color-object
+Shortname: color
+Level: 1
+Abstract: A color space agnostic class for color specification, manipulation, and conversion.
+Editor: Chris Lilley, W3C, chris@w3.org, w3cid 1438
+Editor: Lea Verou, Invited Expert, http://lea.verou.me/about, w3cid 52258
+Repository: leaverou/color-object
+Inline Github Issues: title
+Markup Shorthands: markdown yes
+</pre>
+
+<style>
+/* Put nice boxes around each algorithm.
+   Credits: from Typed OM
+ */
+[data-algorithm]:not(.heading) {
+  padding: .5em;
+  border: thin solid #ddd; border-radius: .5em;
+  margin: .5em calc(-0.5em - 1px);
+}
+[data-algorithm]:not(.heading) > :first-child {
+  margin-top: 0;
+}
+[data-algorithm]:not(.heading) > :last-child {
+  margin-bottom: 0;
+}
+[data-algorithm] [data-algorithm] {
+	margin: 1em 0;
+}
+</style>
+
+Introduction {#intro}
+=====================
+
+TBD
+
+{{Color}} objects {#color-objects}
+==========================================
+
+{{Color}} objects represent ...TBD
+
+<xmp class='idl'>
+[Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
+interface Color {
+	constructor(
+		(CSSOMString or ColorSpace) colorSpace,
+		sequence<double> coords,
+		optional double alpha = 1
+	);
+	constructor(CSSOMString cssText);
+	constructor((Color or CSSColorValue) color);
+
+	attribute CSSOMString colorSpace;
+	attribute sequence<double> coords;
+	attribute double alpha;
+
+	// Get/set coordinates (in this or other color spaces)
+	double get(CSSOMString coord);
+	undefined set(CSSOMString coord, double value);
+
+	// Convert to another color space
+	Color to(CSSOMString colorspace);
+
+	// Check whether a color is in gamut of a given color space
+	boolean inGamut(optional CSSOMString colorspace);
+
+	// Bring a color into gamut of a given colorspace
+	Color toGamut(optional CSSOMString colorSpace, optional ToGamutOptions options);
+
+	CSSOMString toString();
+	object toJSON();
+
+	static Color parse(CSSOMString cssText);
+
+	// Color difference
+	double deltaE(Color color, optional DeltaEMethod method);
+};
+
+dictionary ToGamutOptions {
+	CSSOMString? method = "lch.c";
+};
+
+// TODO: we want authors to be able to extend this
+// If we keep it an enum, the only way to add custom deltaE methods
+// is a separate method.
+enum DeltaEMethod {
+	"76",    // fast, but limited accuracy
+	"2000",  // slower, but accurate
+};
+</xmp>
+
+<div algorithm=Color.constructor>
+	The `new Color(colorspace, coords, alpha)` constructor steps are:
+
+	1. [Look up](#colorspace-lookup) the `ColorSpace` object in the registry using the `colorspace` parameter.
+		1. If the result is `null`, throw a `TypeError`
+		2. Otherwise, set the color’s color space to it
+	2. If `coords` is not provided, create an array of zeroes with length equal to the number of coordinates in `colorspace`.
+	3. If `coords` is provided:
+		1. If it's not an array, throw a `TypeError`.
+		2. Create a clone of the array.
+		3. If its length is greater than the number of coordinates in the color space, trim the excess numbers from the end.
+		4. If its length is smaller than the number of coordinates in the color space, pad it with zeroes
+		5. Set the color's `coords` to the cloned array.
+	6. If `alpha` is not a number, coerce it to a number, then set the color's `alpha` to this number.
+
+	Issue: TODO Describe the other constructor signatures
+</div>
+
+<div algorithm="Color.to()">
+	The <dfn method for=Color>to(colorSpace)</dfn> method
+	of {{Color}} objects must,
+	when called on |this|:
+
+	1. [Look up the color space object](#colorspace-lookup)
+		from the `colorSpace` specifier.
+	2.
+</div>
+
+<div algorithm="Color.parse()">
+	The <dfn method for=Color>parse(|cssText|)</dfn> method,
+	when called,
+	must perform the following steps:
+
+	1. TBD
+</div>
+
+{{ColorSpace}} objects {#colorspace-objects}
+==========================================
+
+<xmp class='idl'>
+[Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
+interface ColorSpace {
+	readonly attribute CSSOMString name;
+	readonly attribute CSSOMString? iccProfile;
+	readonly attribute sequence<double> white;
+	readonly attribute CSSOMString? base;
+	readonly attribute sequence<CSSOMString> coords;
+
+	constructor(CSSOMString name, ColorSpaceOptions options);
+
+	// Register a ColorSpace object
+	static undefined register(ColorSpace colorspace);
+
+	// Creates a new ColorSpace object and registers it
+	static ColorSpace create(CSSOMString name, ColorSpaceOptions options);
+
+	// Array of names for all registered color spaces
+	static readonly attribute FrozenArray<CSSOMString> names;
+
+	// Get ColorSpace object by name
+	static ColorSpace get(CSSOMString name);
+
+	// x and y chromaticities (commented out because Web IDL fails)
+	// static readonly attribute sequence<double> D65_WHITE = [0.3127, 0.3290];
+	// static readonly attribute sequence<double> D50_WHITE = [0.3457, 0.3585];
+};
+
+dictionary ColorSpaceOptions {
+	CSSOMString? iccProfile;
+	sequence<double> white;
+
+	inGamutCallback inGamut;
+
+	// Base color space, if this is a transformation
+	CSSOMString? base;
+	toBaseCallback toBase;
+	fromBaseCallback fromBase;
+
+	sequence<CSSOMString> coords; // coord names
+};
+
+callback inGamutCallback = boolean (sequence<double> coords);
+callback toBaseCallback = sequence<double> (sequence<double> coords);
+callback fromBaseCallback = sequence<double> (sequence<double> coords);
+
+</xmp>
+
+Issue: Should we also have color spaces declare coord ranges, like Color.js?
+
+Algorithms
+==========
+
+Getting and setting coordinates {#get-set}
+-------------------------------------------
+
+The `color.get()` and `color.set()` methods allow authors to read/write coordinates in the current color space or even other color spaces.
+The string argument is a [coordinate reference](#coordinate-references).
+
+`color.set(coord, value)` also accepts a value. If the value is a function, it is invoked immediately, with the result of `color.get(coord)` being passed as the first argument. If the result is a number, the corresponding coordinate is set to it.
+
+Issue: Should we do something cool if the coord is set to a promise? What happens until the promise resolves? What if it's set to another value in the meantime?
+
+Color space lookup {#colorspace-lookup}
+----------------------------------------
+
+Color spaces can be looked up either by `ColorSpace` object, or by `name`.
+Implementations are expected to maintain an internal `Map` registry of color space names to objects, for fast lookups.
+
+To look up a color space, follow the following steps:
+
+1. If `needle` is a `ColorSpace` object, let `needle = needle.name`
+2. If `needle` is a `USVString`, look up if there is an entry with that key in the internal Map of color names to `ColorSpace` objects.
+4. Return the `ColorSpace` object, or `null`, if none is found
+
+Coordinate references {#coordinate-references}
+----------------------------------------------
+
+Many methods in this API accept a string that is a reference to a particular color space coordinate. These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
+
+1. If string does not conform to `"[a-z-]+\.([a-z]+|\*)"` throw a `TypeError`
+2. Let `colorspace` be the part of the string before `"."` and `coord` the part after.
+3. [Look up the color space name](#colorspace-lookup) and set `colorspace` to the result
+4. If `colorspace` is `null`, the coordinate is also `null` and the algorithm stops here.
+5. Otherwise, look up `coord` in the color space's coordinate names.
+    The coordinate index can be used to extract that coordinate from a list of coordinates.
+
+Converting between color spaces {#converting-colorspaces}
+---------------------------------------------------------
+
+To convert a color from color space A to color space B, perform the following steps:
+
+1. If `A.name === B.name`, clone the color and return it
+2. Let coords = `A.toBase(color.coords)`.
+    If `A.base === B.name`, return `new Color(B, coords, color.alpha)`
+3. While `A.base !== "xyz"`:
+    1. Let coords = `A.toBase(color.coords)`.
+    2. If `A.base === B.name`, return `new Color(B, coords, color.alpha)`
+    3. Otherwise, let `A = ColorSpace.get(A.base)`
+4. Follow B's base chain until `"xyz"` as well, and store the result in an array.
+5. Starting from the end, let `coords = B.fromBase(coords)` on each of these colorspaces
+6. Return `new Color(B, coords, color.alpha)`
+
+Issue: Steps 4-6 need rewriting to be less handwavy.
+
+Note: While this seems complicated in the general case, in virtually every real case
+the base chain has a length of max 3, so the algorithm would end very quickly.
+
+Registering a color space {#colorspace-registering}
+----------------------------------------------------
+
+TBD.
+Should throw if `base` chain doesn't resolve to `"xyz"` eventually.
+Should throw if `name` exists.
+
+
+
+Security Considerations {#security-considerations}
+==================================================
+
+There are no known security issues introduced by these features.
+
+Privacy Considerations {#privacy-considerations}
+==================================================
+
+There are no known privacy issues introduced by these features.
