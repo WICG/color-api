@@ -78,6 +78,12 @@ All RGB spaces defined over extended range
 
 ## Example usage
 
+### Reading coordinates
+
+```js
+
+```
+
 ### Parsing color and converting to a specific color space
 
 Converting in place:
