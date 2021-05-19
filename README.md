@@ -76,7 +76,7 @@ All RGB spaces defined over extended range
 
 ## API sketch
 
-Sample WebIDL and algorithms moved to [index.html](index.html).
+Sample WebIDL and algorithms moved to [the draft spec](https://projects.verou.me/color-api/).
 
 ## Example usage
 
