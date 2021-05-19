@@ -234,6 +234,10 @@ callback fromBaseCallback = sequence<double> (sequence<double> coords);
 
 Issue: Should we also have color spaces declare coord ranges, like Color.js?
 
+Issue: How to declare which coords are angles?
+
+Issue: Should we provide conveniences for matrix-based color spaces?
+
 Algorithms {#algorithms}
 =========================
 
@@ -251,6 +255,9 @@ If the result is a number, the corresponding coordinate is set to it.
 Issue: Should we do something cool if the coord is set to a promise?
 What happens until the promise resolves?
 What if it's set to another value in the meantime?
+
+Issue: Should we support multiple manipulations via an object?
+Does order matter?
 
 Color space lookup {#colorspace-lookup}
 ----------------------------------------
@@ -270,7 +277,7 @@ Coordinate references {#coordinate-references}
 Many methods in this API accept a string that is a reference to a particular color space coordinate.
 These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
 
-1. If string does not conform to `^([a-z-]+\.)?([a-z]+|\*)$` throw a `TypeError`
+1. If string does not conform to `^([-a-z-]+\.)?([-a-z]+|\*)$` throw a `TypeError`
 2. Let `colorSpace` be the part of the string before `"."` and `coord` the part after.
 	1. If `colorSpace` is not empty,
 		[look up the color space name](#colorspace-lookup) and set `colorSpace` to the result
@@ -307,6 +314,9 @@ To convert a color from color space A to color space B, perform the following st
 6. Return `new Color(B, coords, color.alpha)`
 
 Issue: Steps 4-6 need rewriting to be less handwavy.
+
+Issue: This does not currently take ICC profiles into account at all,
+needs to be edited to do so. What if A includes a profile and B does not?
 
 Note: While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.

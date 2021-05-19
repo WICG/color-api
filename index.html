@@ -11,7 +11,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
   <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
   <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="80ad38780e0eb181974f1564f61a0abd99a1a02b" name="document-revision">
+  <meta content="4e5f8855e99f61a00522d69d7f9576210e42f176" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -1029,6 +1029,8 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 
 </pre>
    <p class="issue" id="issue-6470a46a"><a class="self-link" href="#issue-6470a46a"></a> Should we also have color spaces declare coord ranges, like Color.js?</p>
+   <p class="issue" id="issue-5f7df086"><a class="self-link" href="#issue-5f7df086"></a> How to declare which coords are angles?</p>
+   <p class="issue" id="issue-88696c88"><a class="self-link" href="#issue-88696c88"></a> Should we provide conveniences for matrix-based color spaces?</p>
    <h2 class="heading settled" data-level="4" id="algorithms"><span class="secno">4. </span><span class="content">Algorithms</span><a class="self-link" href="#algorithms"></a></h2>
    <h3 class="heading settled" data-level="4.1" id="get-set"><span class="secno">4.1. </span><span class="content">Getting and setting coordinates</span><a class="self-link" href="#get-set"></a></h3>
    <p>The <code>color.get()</code> and <code>color.set()</code> methods allow authors to read/write coordinates in the current color space or even other color spaces.
@@ -1040,6 +1042,8 @@ If the result is a number, the corresponding coordinate is set to it.</p>
    <p class="issue" id="issue-8c494f30"><a class="self-link" href="#issue-8c494f30"></a> Should we do something cool if the coord is set to a promise?
 What happens until the promise resolves?
 What if it’s set to another value in the meantime?</p>
+   <p class="issue" id="issue-76554d31"><a class="self-link" href="#issue-76554d31"></a> Should we support multiple manipulations via an object?
+Does order matter?</p>
    <h3 class="heading settled" data-level="4.2" id="colorspace-lookup"><span class="secno">4.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -1057,7 +1061,7 @@ Implementations are expected to maintain an internal <code>Map</code> registry o
 These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:</p>
    <ol>
     <li data-md>
-     <p>If string does not conform to <code>^([a-z-]+\.)?([a-z]+|\*)$</code> throw a <code>TypeError</code></p>
+     <p>If string does not conform to <code>^([-a-z-]+\.)?([-a-z]+|\*)$</code> throw a <code>TypeError</code></p>
     <li data-md>
      <p>Let <code>colorSpace</code> be the part of the string before <code>"."</code> and <code>coord</code> the part after.</p>
      <ol>
@@ -1109,6 +1113,8 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
    <p class="issue" id="issue-f5efd83b"><a class="self-link" href="#issue-f5efd83b"></a> Steps 4-6 need rewriting to be less handwavy.</p>
+   <p class="issue" id="issue-8eaebd4d"><a class="self-link" href="#issue-8eaebd4d"></a> This does not currently take ICC profiles into account at all,
+needs to be edited to do so. What if A includes a profile and B does not?</p>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="4.5" id="colorspace-registering"><span class="secno">4.5. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -1502,12 +1508,18 @@ Should throw if <code>name</code> exists.</p>
    <div class="issue"> Currently this method returns a new instance.
 	Should it instead make the adjustment in place?<a href="#issue-45532b6b"> ↵ </a></div>
    <div class="issue"> Should we also have color spaces declare coord ranges, like Color.js?<a href="#issue-6470a46a"> ↵ </a></div>
+   <div class="issue"> How to declare which coords are angles?<a href="#issue-5f7df086"> ↵ </a></div>
+   <div class="issue"> Should we provide conveniences for matrix-based color spaces?<a href="#issue-88696c88"> ↵ </a></div>
    <div class="issue"> Should we do something cool if the coord is set to a promise?
 What happens until the promise resolves?
 What if it’s set to another value in the meantime?<a href="#issue-8c494f30"> ↵ </a></div>
+   <div class="issue"> Should we support multiple manipulations via an object?
+Does order matter?<a href="#issue-76554d31"> ↵ </a></div>
    <div class="issue"> Should this algorithm be exposed to authors via a static method?
 See <a href="https://github.com/w3ctag/design-principles/issues/300">APIs should allow introspection</a><a href="#issue-242a22e0"> ↵ </a></div>
    <div class="issue"> Steps 4-6 need rewriting to be less handwavy.<a href="#issue-f5efd83b"> ↵ </a></div>
+   <div class="issue"> This does not currently take ICC profiles into account at all,
+needs to be edited to do so. What if A includes a profile and B does not?<a href="#issue-8eaebd4d"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
