@@ -37,7 +37,8 @@ Markup Shorthands: markdown yes
 Introduction {#intro}
 =====================
 
-TBD
+Many APIs on the Web platform need color input and output.
+The API presented in this
 
 {{Color}} objects {#color-objects}
 ==========================================
@@ -47,13 +48,18 @@ TBD
 <xmp class='idl'>
 [Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
 interface Color {
+	// Default constructor
 	constructor(
 		(CSSOMString or ColorSpace) colorSpace,
 		sequence<double> coords,
 		optional double alpha = 1
 	);
+
+	// Parse CSS color
 	constructor(CSSOMString cssText);
-	constructor((Color or CSSColorValue) color);
+
+	// Clone color instance or create from JSON-style object
+	constructor((Color or CSSColorValue or ColorJSON) color);
 
 	attribute CSSOMString colorSpace;
 	attribute sequence<double> coords;
@@ -73,9 +79,7 @@ interface Color {
 	Color toGamut(optional CSSOMString colorSpace, optional ToGamutOptions options);
 
 	CSSOMString toString();
-	object toJSON();
-
-	static Color parse(CSSOMString cssText);
+	ColorJSON toJSON();
 
 	// Color difference
 	double deltaE(Color color, optional DeltaEMethod method);
@@ -91,6 +95,12 @@ dictionary ToGamutOptions {
 enum DeltaEMethod {
 	"76",    // fast, but limited accuracy
 	"2000",  // slower, but accurate
+};
+
+dictionary ColorJSON {
+	CSSOMString colorSpace;
+	sequence<double> coords;
+	double alpha;
 };
 </xmp>
 
@@ -112,22 +122,63 @@ enum DeltaEMethod {
 	Issue: TODO Describe the other constructor signatures
 </div>
 
+<div algorithm="Color.get()">
+	The <dfn method for=Color>get(coord)</dfn> method
+	of {{Color}} objects must,
+	when called on |this|:
+
+	1. [Resolve coord to a coordinate reference](#coordinate-references)
+		and set `ref` to the result.
+	2. If `ref.colorSpace` is null, throw a `ReferenceError` (Color space does not exist)
+	3. Let `color = this.to(ref.colorSpace)`
+	4. If `ref.coord` is not `"*"`, return `color.coords[ref.coord]`.
+	5. If `ref.coord` is `"*"`, return `color.coords`.
+</div>
+
 <div algorithm="Color.to()">
 	The <dfn method for=Color>to(colorSpace)</dfn> method
 	of {{Color}} objects must,
 	when called on |this|:
 
 	1. [Look up the color space object](#colorspace-lookup)
-		from the `colorSpace` specifier.
+		from the current object’s `colorSpace` specifier.
 	2.
 </div>
 
-<div algorithm="Color.parse()">
-	The <dfn method for=Color>parse(|cssText|)</dfn> method,
+<div algorithm="Color.inGamut()">
+	The <dfn method for=Color>inGamut(colorSpace)</dfn> method,
 	when called,
 	must perform the following steps:
 
-	1. TBD
+	1. Let `colorSpace` be the [color space object](#colorspace-lookup)
+		from the current object’s `colorSpace` specifier.
+	2. While the color space does *not* have an `inGamut` method,
+		set `colorSpace = ColorSpace.get(colorSpace.base)`
+	3. If `colorSpace` has an `inGamut` method, return `colorSpace.inGamut(this.coords)`
+	4. Otherwise, return `true`.
+</div>
+
+<div algorithm="Color.toGamut()">
+	The <dfn method for=Color>toGamut(colorSpace)</dfn> method,
+	when called,
+	must perform the following steps:
+
+	1. Let `colorSpace` be the [color space object](#colorspace-lookup)
+		from the current object’s `colorSpace` specifier.
+	2. If `this.inGamut(colorSpace) === true`, clone the current color and return it.
+	3. Lookup the coordinate reference in `options.method` and
+	3. Let `color = this.to()`
+	2. While the color space does *not* have an `inGamut` method,
+		set `colorSpace = ColorSpace.get(colorSpace.base)`
+	3. If `colorSpace` has an `inGamut` method, return `colorSpace.inGamut(this.coords)`
+	4. Otherwise, return `true`.
+
+	Issue: If color spaces don't declare their coord ranges but only the names,
+	we can't have automated clipping
+	and also reducing an arbitrary coord is precarious.
+
+	Issue: Currently this method returns a new instance.
+	Should it instead make the adjustment in place?
 </div>
 
 {{ColorSpace}} objects {#colorspace-objects}
@@ -183,8 +234,8 @@ callback fromBaseCallback = sequence<double> (sequence<double> coords);
 
 Issue: Should we also have color spaces declare coord ranges, like Color.js?
 
-Algorithms
-==========
+Algorithms {#algorithms}
+=========================
 
 Getting and setting coordinates {#get-set}
 -------------------------------------------
@@ -192,9 +243,14 @@ Getting and setting coordinates {#get-set}
 The `color.get()` and `color.set()` methods allow authors to read/write coordinates in the current color space or even other color spaces.
 The string argument is a [coordinate reference](#coordinate-references).
 
-`color.set(coord, value)` also accepts a value. If the value is a function, it is invoked immediately, with the result of `color.get(coord)` being passed as the first argument. If the result is a number, the corresponding coordinate is set to it.
+`color.set(coord, value)` also accepts a value.
+If the value is a function, it is invoked immediately,
+with the result of `color.get(coord)` being passed as the first argument.
+If the result is a number, the corresponding coordinate is set to it.
 
-Issue: Should we do something cool if the coord is set to a promise? What happens until the promise resolves? What if it's set to another value in the meantime?
+Issue: Should we do something cool if the coord is set to a promise?
+What happens until the promise resolves?
+What if it's set to another value in the meantime?
 
 Color space lookup {#colorspace-lookup}
 ----------------------------------------
@@ -211,14 +267,28 @@ To look up a color space, follow the following steps:
 Coordinate references {#coordinate-references}
 ----------------------------------------------
 
-Many methods in this API accept a string that is a reference to a particular color space coordinate. These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
+Many methods in this API accept a string that is a reference to a particular color space coordinate.
+These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
 
-1. If string does not conform to `"[a-z-]+\.([a-z]+|\*)"` throw a `TypeError`
-2. Let `colorspace` be the part of the string before `"."` and `coord` the part after.
-3. [Look up the color space name](#colorspace-lookup) and set `colorspace` to the result
-4. If `colorspace` is `null`, the coordinate is also `null` and the algorithm stops here.
-5. Otherwise, look up `coord` in the color space's coordinate names.
-    The coordinate index can be used to extract that coordinate from a list of coordinates.
+1. If string does not conform to `^([a-z-]+\.)?([a-z]+|\*)$` throw a `TypeError`
+2. Let `colorSpace` be the part of the string before `"."` and `coord` the part after.
+	1. If `colorSpace` is not empty,
+		[look up the color space name](#colorspace-lookup) and set `colorSpace` to the result
+	2. If `colorSpace` is empty, set `colorSpace` to the color space of the context color.
+4. If `colorSpace` is `null`, the coordinate is also `null` and the algorithm stops here.
+5. If the part of the string after `"."` is not `"*"`,
+	look up `coord` in the color space's coordinate names.
+	Let `coord` to the index of the coordinate in the array of coordinate names.
+6. If the part of the string after `"."` is `"*"`, let `coord` to `"*"`.
+7. Return `{colorSpace, coord}`
+
+Note: This algorithm is used in a variety of places in this API,
+and thus does not make decisions about when to throw.
+Host syntax may throw for certain subsets of this syntax,
+invalid color spaces and so on.
+
+Issue: Should this algorithm be exposed to authors via a static method?
+See [APIs should allow introspection](https://github.com/w3ctag/design-principles/issues/300)
 
 Converting between color spaces {#converting-colorspaces}
 ---------------------------------------------------------
