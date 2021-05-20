@@ -1,8 +1,7 @@
 <pre class='metadata'>
 Title:  Color API
-Status: ED
+Status: Dream
 Work Status: exploring
-Group: csswg
 ED: https://leaverou.github.io/color-object
 Shortname: color
 Level: 1
@@ -37,11 +36,25 @@ Markup Shorthands: markdown yes
 Introduction {#intro}
 =====================
 
-Many APIs on the Web platform need color input and output.
-The API presented in this
+Many APIs on the Web platform need to be able to accept color input
+and provide color output
+in a format more structured than CSS `<color>` strings.
+Furthermore, authors often need to perform computations on color values,
+such as manipulating components in a variety of color spaces,
+computing color difference,
+evaluating whether color pairs have sufficient contrast,
+or interpolating.
+
+The API presented in this document aims to address all of the common use cases,
+and provide extensibility points to enable more complex use cases to be expressed.
+
+Issue: Expand introduction
+
+API objects {#objects}
+=======================
 
 {{Color}} objects {#color-objects}
-==========================================
+-----------------------------------
 
 {{Color}} objects represent ...TBD
 
@@ -182,7 +195,7 @@ dictionary ColorJSON {
 </div>
 
 {{ColorSpace}} objects {#colorspace-objects}
-==========================================
+---------------------------------------------
 
 <xmp class='idl'>
 [Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
