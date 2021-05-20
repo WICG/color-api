@@ -117,6 +117,13 @@ dictionary ColorJSON {
 };
 </xmp>
 
+Issue: Regarding `get()` and `set()`, it may be a bit weird to have a function
+that returns a different type (array or single number)
+based on the argument, and it also means that other parts of the API cannot specify that they accept
+a coordinate reference and be done with it, they also need to do error checking to make sure they got
+a single coordinate, and not an entire array. Therefore, it may be best to split the array getting
+into separate `getAll()` and `setAll()` methods.
+
 <div algorithm=Color.constructor>
 	The `new Color(colorspace, coords, alpha)` constructor steps are:
 
