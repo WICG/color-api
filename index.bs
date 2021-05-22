@@ -82,6 +82,9 @@ interface Color {
 	double get(CSSOMString coord);
 	undefined set(CSSOMString coord, double value);
 
+	sequence<double> getAll((CSSOMString or ColorSpace) colorSpace);
+	undefined setAll((CSSOMString or ColorSpace) colorSpace, sequence<double> coords);
+
 	// Convert to another color space
 	Color to(CSSOMString colorspace);
 
@@ -117,12 +120,10 @@ dictionary ColorJSON {
 };
 </xmp>
 
-Issue: Regarding `get()` and `set()`, it may be a bit weird to have a function
-that returns a different type (array or single number)
-based on the argument, and it also means that other parts of the API cannot specify that they accept
-a coordinate reference and be done with it, they also need to do error checking to make sure they got
-a single coordinate, and not an entire array. Therefore, it may be best to split the array getting
-into separate `getAll()` and `setAll()` methods.
+Issue: Should the argument in `getAll()` be optional?
+Then it basically returns `this.coords`.
+But if we do that, then to be consistent with `getAll()`,
+`setAll()` also needs to have its first argument be optional.
 
 <div algorithm=Color.constructor>
 	The `new Color(colorspace, coords, alpha)` constructor steps are:
@@ -264,7 +265,8 @@ Algorithms {#algorithms}
 Getting and setting coordinates {#get-set}
 -------------------------------------------
 
-The `color.get()` and `color.set()` methods allow authors to read/write coordinates in the current color space or even other color spaces.
+The `color.get()` and `color.set()` methods allow authors to read/write coordinates
+in the current color space or even other color spaces.
 The string argument is a [coordinate reference](#coordinate-references).
 
 `color.set(coord, value)` also accepts a value.
@@ -277,7 +279,8 @@ What happens until the promise resolves?
 What if it's set to another value in the meantime?
 
 Issue: Should we support multiple manipulations via an object?
-Does order matter?
+Order matters though, and it's a bit of an antipattern to have an object parameter
+and depend on its property order.
 
 Color space lookup {#colorspace-lookup}
 ----------------------------------------
@@ -297,17 +300,15 @@ Coordinate references {#coordinate-references}
 Many methods in this API accept a string that is a reference to a particular color space coordinate.
 These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
 
-1. If string does not conform to `^([-a-z-]+\.)?([-a-z]+|\*)$` throw a `TypeError`
+1. If string does not conform to `^([-a-z-]+\.)?[-a-z]+$` throw a `TypeError`
 2. Let `colorSpace` be the part of the string before `"."` and `coord` the part after.
 	1. If `colorSpace` is not empty,
 		[look up the color space name](#colorspace-lookup) and set `colorSpace` to the result
 	2. If `colorSpace` is empty, set `colorSpace` to the color space of the context color.
 4. If `colorSpace` is `null`, the coordinate is also `null` and the algorithm stops here.
-5. If the part of the string after `"."` is not `"*"`,
-	look up `coord` in the color space's coordinate names.
-	Let `coord` to the index of the coordinate in the array of coordinate names.
-6. If the part of the string after `"."` is `"*"`, let `coord` to `"*"`.
-7. Return `{colorSpace, coord}`
+5. Look up `coord` in the color space's coordinate names.
+	Set `coord` to the index of the coordinate in the array of coordinate names.
+6. Return `{colorSpace, coord}`
 
 Note: This algorithm is used in a variety of places in this API,
 and thus does not make decisions about when to throw.

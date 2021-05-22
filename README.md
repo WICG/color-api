@@ -85,14 +85,14 @@ Sample WebIDL and algorithms moved to [the draft spec](https://projects.verou.me
 ```js
 let color = new Color("rebeccapurple");
 
-// Get all coords in another color space
-color.get("lch.*"); // [32.4, 61.2, 309]
-
-// Get individual coord
+// Get individual coord in other color space
 color.get("lch.l"); // 32.4
 
 // Get individual coord in current color space
 color.get("r"); // 0.4
+
+// Get all coords in another color space
+color.getAll("lch"); // [32.4, 61.2, 309]
 ```
 
 ### Parsing color and converting to a specific color space
