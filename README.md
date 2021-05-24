@@ -47,18 +47,18 @@ Usable without error by those with little, powerful for those with much.
     - Should be able to support HDR color spaces, and SDR → HDR conversion
     - No hidden gamut mapping or clipping
 - D65 relative CIE XYZ connection space for SDR
-    - (extended rec2020-linear will give same result)
+    - (extended rec2020-linear, as [used in Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md#conversion-between-color-spaces) will give same result)
     - Configurable media white level for HDR (203cd/m² default for absolute)
 - Extensibility and introspection would be good
 
 ## Predefined color spaces
 
+This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/css-color-4/) and [Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md).All RGB spaces are defined over the extended range.
+
 ### SDR
 
-All RGB spaces defined over extended range
-
-- `srgb` *(Web legacy compat)*
-- `srgb-linear` *(as used in Canvas HDR, some GPU)*
+- `srgb` *(Web legacy compatibility)*
+- `srgb-linear` *(as used in Canvas HDR, some GPU operations, native APIs)*
 - `display-p3` *(new Web)*
 - `a98-rgb` *(?? needed, nowadays?)*
 - `prophoto-rgb` *(from raw digital photos)*
@@ -81,6 +81,8 @@ Sample WebIDL and algorithms moved to [the draft spec](https://projects.verou.me
 ## Example usage
 
 ### Reading coordinates
+
+For ease of use and widest applicability, coordinates are plain JavaScript number (for a single coordinate), or an array of number (for all coordinates in a given colorspace).
 
 ```js
 let color = new Color("rebeccapurple");
@@ -129,7 +131,7 @@ Another possibility for relative manipulations:
 color.set("lch.l", l => l * 1.2);
 ```
 
-### Adding `--hsv` as a transformation of sRGB
+### Extensibility: Adding `--hsv` as a transformation of sRGB
 
 ```js
 ColorSpace.register(new ColorSpace("--hsv", {
@@ -179,3 +181,7 @@ contrast = (l2 + 0.05)/(l1 + 0.05);
 
 No, and this is by design.
 It complicates implementation if color spaces can "stop" being supported. What happens with all existing colors created?
+
+### Define colors over an extended range
+
+Ths simplifies use of HDR, especially on platforms like WebGPU or WebGL which are not inherently color managed (all operatons happen in a single color space)
