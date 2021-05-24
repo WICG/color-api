@@ -15,11 +15,11 @@ Many of Web Platform APIs need a WCG, HDR Color object:
 ## Use cases
 
 - Lossless color space conversion (e.g. LCH → P3) by default, optional gamut mapping.
-- Color manipulation (e.g. making a color darker by reducing its LCH lightness) with choice of color space
-- Interpolation (e.g. mixing two colors) with choice of color space
+- Color manipulation (e.g. making a color darker by reducing its LCH lightness) with choice of manipulation color space
+- Interpolation (e.g. mixing two colors, compositing, generating color scales) with choice of interpolation color space
 - Difference between two colors (ΔE)
 - String parsing (e.g. what color is <code>rebeccapurple</code>?)
-- WCAG relative luminance (for any color space, not just sRGB)
+- WCAG 2.1 (or it's successor) relative luminance (for any color space, not just sRGB)
 - Prototyping new functionality for incubation, before standardization
 - Compositing and blending (possibly Level 2)
 
@@ -34,6 +34,7 @@ Usable without error by those with little, powerful for those with much.
     - Common things should be easy, complex things should be possible
     - **Learnability:** don't require a ton of color science knowledge to use
         - Handle linearization, chromatic adaptation automatically when needed
+        - Consistent API shape independent of input syntax
     - **Efficiency:** Avoid verbosity, have sensible defaults
     - **Safety:** Avoid error conditions if possible
     - Liberal in what is accepted (for arguments)
@@ -49,7 +50,9 @@ Usable without error by those with little, powerful for those with much.
 - D65 relative CIE XYZ connection space for SDR
     - (extended rec2020-linear, as [used in Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md#conversion-between-color-spaces) will give same result)
     - Configurable media white level for HDR (203cd/m² default for absolute)
-- Extensibility and introspection would be good
+- Extensibility
+    - sufficient power to allow polyfilling and experimentation
+    - introspection would be good
 
 ## Predefined color spaces
 
