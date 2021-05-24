@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
   <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="1eb14ceb5ff979b70ccadecdb1a9d27fb00b950c" name="document-revision">
+  <meta content="62c13d842f1b5039328d13f5107d520b1fe2f1ca" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2152,10 +2152,10 @@ and provide color output
 in a format more structured than CSS <code>&lt;color></code> strings.
 Furthermore, authors often need to perform computations on color values,
 such as manipulating components in a variety of color spaces,
-computing color difference,
+computing color differences,
 evaluating whether color pairs have sufficient contrast,
-or interpolating.</p>
-   <p>The API presented in this document aims to address all of the common use cases,
+or interpolating two colors (regardless of what color space they are specified in).</p>
+   <p>The API presented in this document aims to address all of the <a href="https://github.com/LeaVerou/color-api#readme">common use cases</a>,
 and provide extensibility points to enable more complex use cases to be expressed.</p>
    <p class="issue" id="issue-9c85b883"><a class="self-link" href="#issue-9c85b883"></a> Expand introduction</p>
    <h2 class="heading settled" data-level="2" id="objects"><span class="secno">2. </span><span class="content">API objects</span><a class="self-link" href="#objects"></a></h2>
@@ -2268,9 +2268,7 @@ But if we do that, then to be consistent with <code>getAll()</code>, <code>setAl
      <li data-md>
       <p>Let <code>color = this.to(ref.colorSpace)</code></p>
      <li data-md>
-      <p>If <code>ref.coord</code> is not <code>"*"</code>, return <code>color.coords[ref.coord]</code>.</p>
-     <li data-md>
-      <p>If <code>ref.coord</code> is <code>"*"</code>, return <code>color.coords</code>.</p>
+      <p>Return <code>color.coords[ref.coord]</code>.</p>
     </ol>
    </div>
    <div class="algorithm" data-algorithm="Color.to()">

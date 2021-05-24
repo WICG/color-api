@@ -153,8 +153,7 @@ But if we do that, then to be consistent with `getAll()`,
 		and set `ref` to the result.
 	2. If `ref.colorSpace` is null, throw a `ReferenceError` (Color space does not exist)
 	3. Let `color = this.to(ref.colorSpace)`
-	4. If `ref.coord` is not `"*"`, return `color.coords[ref.coord]`.
-	5. If `ref.coord` is `"*"`, return `color.coords`.
+	4. Return `color.coords[ref.coord]`.
 </div>
 
 <div algorithm="Color.to()">
