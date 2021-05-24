@@ -7,8 +7,8 @@ Many of Web Platform APIs need a WCG, HDR Color object:
 - Canvas API (see [Canvas High Dynamic Range](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md))
 - CSS OM
 - SVG DOM
-- HTML `<input type="color">` or its successor
-- Eyedropper API
+- HTML `<input type="color">` or its successor (see [Open UI](https://github.com/openui/open-ui/issues/334))
+- [Eyedropper API](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/EyeDropper/explainer.md) (see [TAG review](https://github.com/w3ctag/design-reviews/issues/587))
 - WebGPU
 
 
