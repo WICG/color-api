@@ -41,11 +41,12 @@ and provide color output
 in a format more structured than CSS `<color>` strings.
 Furthermore, authors often need to perform computations on color values,
 such as manipulating components in a variety of color spaces,
-computing color difference,
+computing color differences,
 evaluating whether color pairs have sufficient contrast,
-or interpolating.
+or interpolating two colors (regardless of what color space they are specified in).
 
-The API presented in this document aims to address all of the common use cases,
+The API presented in this document aims to address all of the
+<a href="https://github.com/LeaVerou/color-api#readme">common use cases</a>,
 and provide extensibility points to enable more complex use cases to be expressed.
 
 Issue: Expand introduction
