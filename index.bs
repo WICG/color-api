@@ -210,7 +210,7 @@ But if we do that, then to be consistent with `getAll()`,
 interface ColorSpace {
 	readonly attribute CSSOMString name;
 	readonly attribute CSSOMString? iccProfile;
-	readonly attribute sequence<double> white;
+	readonly attribute ColorSpaceWhitePoint white;
 	readonly attribute CSSOMString? base;
 	readonly attribute sequence<CSSOMString> coords;
 
@@ -242,7 +242,7 @@ interface ColorSpaceWhitePoint {
 
 dictionary ColorSpaceOptions {
 	CSSOMString? iccProfile;
-	sequence<double> white;
+	ColorSpaceWhitePoint white;
 
 	inGamutCallback inGamut;
 
