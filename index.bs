@@ -227,10 +227,17 @@ interface ColorSpace {
 
 	// Get ColorSpace object by name
 	static ColorSpace get(CSSOMString name);
+};
 
-	// x and y chromaticities (commented out because Web IDL fails)
-	// static readonly attribute sequence<double> D65_WHITE = [0.3127, 0.3290];
-	// static readonly attribute sequence<double> D50_WHITE = [0.3457, 0.3585];
+// White point x and y chromaticities
+interface ColorSpaceWhitePoint {
+	constructor(double x, double y);
+
+	readonly attribute double x;
+	readonly attribute double y;
+
+	static readonly attribute ColorSpaceWhitePoint D65;
+	static readonly attribute ColorSpaceWhitePoint D50;
 };
 
 dictionary ColorSpaceOptions {
@@ -258,6 +265,12 @@ Issue: Should we also have color spaces declare coord ranges, like Color.js?
 Issue: How to declare which coords are angles?
 
 Issue: Should we provide conveniences for matrix-based color spaces?
+
+The `ColorSpaceWhitePoint` interface represents the xy chromaticity coordinates of
+a white point. For convenience, D50 and D65 are predefined as follows:
+
+- `ColorSpaceWhitePoint.D50` is set to `new ColorSpaceWhitePoint(0.3457, 0.3585)`
+- `ColorSpaceWhitePoint.D65` is set to `new ColorSpaceWhitePoint(0.3127, 0.3290)`
 
 Algorithms {#algorithms}
 =========================
