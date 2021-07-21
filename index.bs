@@ -232,6 +232,9 @@ interface ColorSpace {
 
 	// Lookup ColorSpace object by name
 	static ColorSpace get((CSSOMString or ColorSpace) name);
+
+	// Load ICC profile and create a ColorSpace object from it
+	static Promise<ColorSpace> load(CSSOMString url);
 };
 
 // White point x and y chromaticities
@@ -246,7 +249,6 @@ interface ColorSpaceWhitePoint {
 };
 
 dictionary ColorSpaceOptions {
-	CSSOMString? iccProfile;
 	(ColorSpaceWhitePoint or object) white;
 
 	inGamutCallback inGamut;
@@ -270,6 +272,8 @@ Issue: Should we also have color spaces declare coord ranges, like Color.js?
 Issue: How to declare which coords are angles?
 
 Issue: Should we provide conveniences for matrix-based color spaces?
+
+Issue: What to do with coordinate names when loading a ColorSpace from an ICC profile?
 
 The `ColorSpaceWhitePoint` interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:

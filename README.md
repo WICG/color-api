@@ -188,3 +188,9 @@ It complicates implementation if color spaces can "stop" being supported. What h
 ### Define colors over an extended range
 
 Ths simplifies use of HDR, especially on platforms like WebGPU or WebGL which are not inherently color managed (all operatons happen in a single color space)
+
+### ICC Profiles
+
+An earlier version of this draft had `iccProfile` as a property of `ColorSpace` objects.
+However, that would require the entire API to be async, which significantly complicates use cases.
+Therefore, it was deemed better to have an async `ColorSpace.load()` method that returns a regular `ColorSpace` object.
