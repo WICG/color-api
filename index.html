@@ -1490,7 +1490,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
   <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="0fd5bbc30c730fd016fc1b2974c000cffb21dc05" name="document-revision">
+  <meta content="6669f546feae6dd6f04ee2cd7bb09d3d6dc4b364" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2361,7 +2361,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-colorspaceoptions"><code><c- g>ColorSpaceOptions</c-></code></dfn> {
   <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②①"><c- n>CSSOMString</c-></a>? <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="CSSOMString? " id="dom-colorspaceoptions-iccprofile"><code><c- g>iccProfile</c-></code><a class="self-link" href="#dom-colorspaceoptions-iccprofile"></a></dfn>;
-  <a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint③"><c- n>ColorSpaceWhitePoint</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="ColorSpaceWhitePoint " id="dom-colorspaceoptions-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspaceoptions-white"></a></dfn>;
+  (<a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint③"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a>) <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="(ColorSpaceWhitePoint or object) " id="dom-colorspaceoptions-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspaceoptions-white"></a></dfn>;
 
   <a data-link-type="idl-name" href="#callbackdef-ingamutcallback" id="ref-for-callbackdef-ingamutcallback"><c- n>inGamutCallback</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="inGamutCallback " id="dom-colorspaceoptions-ingamut"><code><c- g>inGamut</c-></code><a class="self-link" href="#dom-colorspaceoptions-ingamut"></a></dfn>;
 
@@ -2764,6 +2764,12 @@ Should throw if <code>name</code> exists.</p>
     <li><a href="#ref-for-idl-double①①">2.2. ColorSpace objects</a> <a href="#ref-for-idl-double①②">(2)</a> <a href="#ref-for-idl-double①③">(3)</a> <a href="#ref-for-idl-double①④">(4)</a> <a href="#ref-for-idl-double①⑤">(5)</a> <a href="#ref-for-idl-double①⑥">(6)</a> <a href="#ref-for-idl-double①⑦">(7)</a> <a href="#ref-for-idl-double①⑧">(8)</a> <a href="#ref-for-idl-double①⑨">(9)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-idl-object">
+   <a href="https://heycam.github.io/webidl/#idl-object">https://heycam.github.io/webidl/#idl-object</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-idl-object">2.2. ColorSpace objects</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-sequence">
    <a href="https://heycam.github.io/webidl/#idl-sequence">https://heycam.github.io/webidl/#idl-sequence</a><b>Referenced in:</b>
    <ul>
@@ -2797,6 +2803,7 @@ Should throw if <code>name</code> exists.</p>
      <li><span class="dfn-paneled" id="term-for-idl-frozen-array">FrozenArray</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean">boolean</span>
      <li><span class="dfn-paneled" id="term-for-idl-double">double</span>
+     <li><span class="dfn-paneled" id="term-for-idl-object">object</span>
      <li><span class="dfn-paneled" id="term-for-idl-sequence">sequence</span>
      <li><span class="dfn-paneled" id="term-for-idl-undefined">undefined</span>
     </ul>
@@ -2910,7 +2917,7 @@ Should throw if <code>name</code> exists.</p>
 
 <c- b>dictionary</c-> <a href="#dictdef-colorspaceoptions"><code><c- g>ColorSpaceOptions</c-></code></a> {
   <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>? <a data-type="CSSOMString? " href="#dom-colorspaceoptions-iccprofile"><code><c- g>iccProfile</c-></code></a>;
-  <a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <a data-type="ColorSpaceWhitePoint " href="#dom-colorspaceoptions-white"><code><c- g>white</c-></code></a>;
+  (<a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a>) <a data-type="(ColorSpaceWhitePoint or object) " href="#dom-colorspaceoptions-white"><code><c- g>white</c-></code></a>;
 
   <a data-link-type="idl-name" href="#callbackdef-ingamutcallback"><c- n>inGamutCallback</c-></a> <a data-type="inGamutCallback " href="#dom-colorspaceoptions-ingamut"><code><c- g>inGamut</c-></code></a>;
 

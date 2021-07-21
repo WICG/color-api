@@ -242,7 +242,7 @@ interface ColorSpaceWhitePoint {
 
 dictionary ColorSpaceOptions {
 	CSSOMString? iccProfile;
-	ColorSpaceWhitePoint white;
+	(ColorSpaceWhitePoint or object) white;
 
 	inGamutCallback inGamut;
 
