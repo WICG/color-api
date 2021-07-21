@@ -106,9 +106,9 @@ Converting in place:
 
 ```js
 let color = new Color("rebeccapurple");
-color.colorspace; // "srgb";
+color.colorSpace; // "srgb";
 color.coords; // [0.4, 0.2, 0.6]
-color.colorspace = "lch";
+color.colorSpace = "lch";
 color.coords; // [32.4, 61.2, 309]
 ```
 
@@ -116,7 +116,7 @@ By creating a new object:
 
 ```js
 let color = new Color("rebeccapurple");
-color.colorspace; // "srgb";
+color.colorSpace; // "srgb";
 color.coords; // [0.4, 0.2, 0.6]
 let lchColor = color.to("lch");
 lchColor.coords; // [32.4, 61.2, 309]
@@ -134,10 +134,10 @@ Another possibility for relative manipulations:
 color.set("lch", "l", l => l * 1.2);
 ```
 
-### Extensibility: Adding `--hsv` as a transformation of sRGB
+### Extensibility: Adding `hsv` as a transformation of sRGB
 
 ```js
-ColorSpace.register(new ColorSpace("--hsv", {
+ColorSpace.register(new ColorSpace("hsv", {
     base: "srgb",
     coords: ["h", "s", "v"],
     toBase: srgb => {
