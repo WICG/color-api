@@ -216,7 +216,7 @@ interface ColorSpace {
 	readonly attribute CSSOMString name;
 	readonly attribute CSSOMString? iccProfile;
 	readonly attribute ColorSpaceWhitePoint white;
-	readonly attribute CSSOMString? base;
+	readonly attribute ColorSpace? base;
 	readonly attribute sequence<CSSOMString> coords;
 
 	constructor(CSSOMString name, ColorSpaceOptions options);
@@ -254,7 +254,7 @@ dictionary ColorSpaceOptions {
 	inGamutCallback inGamut;
 
 	// Base color space, if this is a transformation
-	CSSOMString? base;
+	(CSSOMString or ColorSpace)? base;
 	toBaseCallback toBase;
 	fromBaseCallback fromBase;
 
