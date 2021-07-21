@@ -598,7 +598,6 @@
 	a[href]:focus,
 	a[href]:hover {
 		text-decoration-thickness: 2px;
-		text-decoratin
 	}
 	a[href]:active {
 		color: #c00;
@@ -1488,9 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
+  <meta content="Bikeshed version bb6b91100, updated Mon Jul 12 16:52:37 2021 -0700" name="generator">
   <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="b432e30daea731b8c3f5e86d63af0bfe802d8bd0" name="document-revision">
+  <meta content="a8c2d3fd741c4ac6302c3e585baafd41d0add596" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2090,7 +2089,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dd><a href="https://github.com/leaverou/color-object/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard" data-editor-id="1438"><a class="p-name fn u-email email" href="mailto:chris@w3.org">Chris Lilley</a> (<span class="p-org org">W3C</span>)
+     <dd class="editor p-author h-card vcard" data-editor-id="1438"><a class="p-name fn u-url url" href="https://svgees.us/">Chris Lilley</a> (<span class="p-org org">W3C</span>)
      <dd class="editor p-author h-card vcard" data-editor-id="52258"><a class="p-name fn u-url url" href="http://lea.verou.me/about">Lea Verou</a> (<span class="p-org org">Invited Expert</span>)
     </dl>
    </div>
@@ -2156,7 +2155,7 @@ evaluating whether color pairs have sufficient contrast,
 or interpolating two colors (regardless of what color space they are specified in).</p>
    <p>The API presented in this document aims to address all of the <a href="https://github.com/LeaVerou/color-api#readme">common use cases</a>,
 and provide extensibility points to enable more complex use cases to be expressed.</p>
-   <p class="issue" id="issue-9c85b883"><a class="self-link" href="#issue-9c85b883"></a> Expand introduction</p>
+   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/1" style="text-transform:none">leaverou/color-object/1</a><a href="https://github.com/leaverou/color-object/issues/1">Expand introduction</a></div>
    <h2 class="heading settled" data-level="2" id="objects"><span class="secno">2. </span><span class="content">API objects</span><a class="self-link" href="#objects"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="color-objects"><span class="secno">2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color">Color</a></code> objects</span><a class="self-link" href="#color-objects"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①">Color</a></code> objects represent ...TBD</p>
@@ -2261,7 +2260,7 @@ and provide extensibility points to enable more complex use cases to be expresse
      <li data-md>
       <p>If <code>alpha</code> is not a number, coerce it to a number, then set the color’s <code>alpha</code> to this number.</p>
     </ol>
-    <p class="issue" id="issue-724c1b3b"><a class="self-link" href="#issue-724c1b3b"></a> TODO Describe the other constructor signatures</p>
+    <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/3" style="text-transform:none">leaverou/color-object/3</a><a href="https://github.com/leaverou/color-object/issues/3">Describe the other constructor signatures</a></div>
    </div>
    <div class="algorithm" data-algorithm="Color.get()">
      The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code><a class="self-link" href="#dom-color-get-coord"></a></dfn> method
@@ -2325,11 +2324,8 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
      <li data-md>
       <p>Otherwise, return <code>true</code>.</p>
     </ol>
-    <p class="issue" id="issue-ae04596d"><a class="self-link" href="#issue-ae04596d"></a> If color spaces don’t declare their coord ranges but only the names,
-	we can’t have automated clipping
-	and also reducing an arbitrary coord is precarious.</p>
-    <p class="issue" id="issue-45532b6b"><a class="self-link" href="#issue-45532b6b"></a> Currently this method returns a new instance.
-	Should it instead make the adjustment in place?</p>
+    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/5" style="text-transform:none">leaverou/color-object/5</a><a href="https://github.com/leaverou/color-object/issues/5">`toGamut()` in place?</a></div>
    </div>
    <h3 class="heading settled" data-level="2.2" id="colorspace-objects"><span class="secno">2.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#colorspace" id="ref-for-colorspace⑤">ColorSpace</a></code> objects</span><a class="self-link" href="#colorspace-objects"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
@@ -2387,9 +2383,9 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 <c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑧"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="fromBaseCallback" data-dfn-type="argument" data-export id="dom-frombasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-frombasecallback-coords"></a></dfn>);
 
 </pre>
-   <p class="issue" id="issue-6470a46a"><a class="self-link" href="#issue-6470a46a"></a> Should we also have color spaces declare coord ranges, like Color.js?</p>
-   <p class="issue" id="issue-5f7df086"><a class="self-link" href="#issue-5f7df086"></a> How to declare which coords are angles?</p>
-   <p class="issue" id="issue-88696c88"><a class="self-link" href="#issue-88696c88"></a> Should we provide conveniences for matrix-based color spaces?</p>
+   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a></div>
    <p class="issue" id="issue-7fc4e47f"><a class="self-link" href="#issue-7fc4e47f"></a> What to do with coordinate names when loading a ColorSpace from an ICC profile?</p>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
@@ -2424,9 +2420,7 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <p class="issue" id="issue-8c494f30"><a class="self-link" href="#issue-8c494f30"></a> Should we do something cool if the coord is set to a promise?
-What happens until the promise resolves?
-What if it’s set to another value in the meantime?</p>
+   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2464,9 +2458,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <p class="issue" id="issue-f5efd83b"><a class="self-link" href="#issue-f5efd83b"></a> Steps 4-6 need rewriting to be less handwavy.</p>
-   <p class="issue" id="issue-8eaebd4d"><a class="self-link" href="#issue-8eaebd4d"></a> This does not currently take ICC profiles into account at all,
-needs to be edited to do so. What if A includes a profile and B does not?</p>
+   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -2976,23 +2968,16 @@ Should throw if <code>name</code> exists.</p>
 </pre>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue"> Expand introduction<a href="#issue-9c85b883"> ↵ </a></div>
-   <div class="issue"> TODO Describe the other constructor signatures<a href="#issue-724c1b3b"> ↵ </a></div>
-   <div class="issue"> If color spaces don’t declare their coord ranges but only the names,
-	we can’t have automated clipping
-	and also reducing an arbitrary coord is precarious.<a href="#issue-ae04596d"> ↵ </a></div>
-   <div class="issue"> Currently this method returns a new instance.
-	Should it instead make the adjustment in place?<a href="#issue-45532b6b"> ↵ </a></div>
-   <div class="issue"> Should we also have color spaces declare coord ranges, like Color.js?<a href="#issue-6470a46a"> ↵ </a></div>
-   <div class="issue"> How to declare which coords are angles?<a href="#issue-5f7df086"> ↵ </a></div>
-   <div class="issue"> Should we provide conveniences for matrix-based color spaces?<a href="#issue-88696c88"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/1" style="text-transform:none">leaverou/color-object/1</a><a href="https://github.com/leaverou/color-object/issues/1">Expand introduction</a><a href="#issue-d41d8cd9"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/3" style="text-transform:none">leaverou/color-object/3</a><a href="https://github.com/leaverou/color-object/issues/3">Describe the other constructor signatures</a><a href="#issue-d41d8cd9①"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9②"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/5" style="text-transform:none">leaverou/color-object/5</a><a href="https://github.com/leaverou/color-object/issues/5">`toGamut()` in place?</a><a href="#issue-d41d8cd9③"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9④"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a><a href="#issue-d41d8cd9⑤"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a><a href="#issue-d41d8cd9⑥"> ↵ </a></div>
    <div class="issue"> What to do with coordinate names when loading a ColorSpace from an ICC profile?<a href="#issue-7fc4e47f"> ↵ </a></div>
-   <div class="issue"> Should we do something cool if the coord is set to a promise?
-What happens until the promise resolves?
-What if it’s set to another value in the meantime?<a href="#issue-8c494f30"> ↵ </a></div>
-   <div class="issue"> Steps 4-6 need rewriting to be less handwavy.<a href="#issue-f5efd83b"> ↵ </a></div>
-   <div class="issue"> This does not currently take ICC profiles into account at all,
-needs to be edited to do so. What if A includes a profile and B does not?<a href="#issue-8eaebd4d"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
