@@ -270,7 +270,7 @@ Issue(6):
 
 Issue(7):
 
-Issue: What to do with coordinate names when loading a ColorSpace from an ICC profile?
+Issue(20):
 
 The `ColorSpaceWhitePoint` interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:

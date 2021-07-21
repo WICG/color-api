@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version bb6b91100, updated Mon Jul 12 16:52:37 2021 -0700" name="generator">
   <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="a8c2d3fd741c4ac6302c3e585baafd41d0add596" name="document-revision">
+  <meta content="095a6af1f23c99c4de1c94ee331c06d9c0056436" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2386,7 +2386,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
    <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a></div>
    <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a></div>
    <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a></div>
-   <p class="issue" id="issue-7fc4e47f"><a class="self-link" href="#issue-7fc4e47f"></a> What to do with coordinate names when loading a ColorSpace from an ICC profile?</p>
+   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/20" style="text-transform:none">leaverou/color-object/20</a><a href="https://github.com/leaverou/color-object/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
    <ul>
@@ -2420,7 +2420,7 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2458,7 +2458,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑨"><a class="self-link" href="#issue-d41d8cd9⑨"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -2975,9 +2975,9 @@ Should throw if <code>name</code> exists.</p>
    <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9④"> ↵ </a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a><a href="#issue-d41d8cd9⑤"> ↵ </a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a><a href="#issue-d41d8cd9⑥"> ↵ </a></div>
-   <div class="issue"> What to do with coordinate names when loading a ColorSpace from an ICC profile?<a href="#issue-7fc4e47f"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/20" style="text-transform:none">leaverou/color-object/20</a><a href="https://github.com/leaverou/color-object/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑨"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
