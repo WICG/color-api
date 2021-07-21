@@ -91,13 +91,13 @@ For ease of use and widest applicability, coordinates are plain JavaScript numbe
 let color = new Color("rebeccapurple");
 
 // Get individual coord in other color space
-color.get("lch.l"); // 32.4
+color.get("lch", "l"); // 32.4
 
 // Get individual coord in current color space
 color.get("r"); // 0.4
 
 // Get all coords in another color space
-color.getAll("lch"); // [32.4, 61.2, 309]
+color.to("lch").coords; // [32.4, 61.2, 309]
 ```
 
 ### Parsing color and converting to a specific color space
@@ -125,13 +125,13 @@ lchColor.coords; // [32.4, 61.2, 309]
 ### Lightening a color without changing its color space
 
 ```js
-color.set("lch.l", color.get("lch.l") * 1.2);
+color.set("lch", "l", color.get("lch", "l") * 1.2);
 ```
 
 Another possibility for relative manipulations:
 
 ```js
-color.set("lch.l", l => l * 1.2);
+color.set("lch", "l", l => l * 1.2);
 ```
 
 ### Extensibility: Adding `--hsv` as a transformation of sRGB
@@ -167,8 +167,8 @@ let contrast;
 let fg = new Color("display-p3" [1, 1, 0]); // P3 yellow
 let bg = new Color("sienna"); // sRGB named color
 
-let l1 = fg.get("xyz.y");
-let l2 = bg.get("xyz.y");
+let l1 = fg.get("xyz", "y");
+let l2 = bg.get("xyz", "y");
 
 if (l1 > l2) {
     [l1, l2] = [l2, l1];

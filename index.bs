@@ -80,8 +80,17 @@ interface Color {
 	attribute double alpha;
 
 	// Get/set coordinates (in this or other color spaces)
-	double get(CSSOMString coord);
-	Color set(CSSOMString coord, double value);
+	double get((CSSOMString or ColorSpace) colorSpace, (CSSOMString or unsigned short) coord);
+	double get((CSSOMString or unsigned short) coord);
+
+	Color set(
+		(CSSOMString or ColorSpace) colorSpace,
+		(CSSOMString or unsigned short) coord,
+		double value
+	);
+	Color set((CSSOMString or unsigned short) coord, double value);
+	Color set((CSSOMString or ColorSpace) colorSpace, object values);
+	Color set(object values);
 
 	// Convert to another color space
 	Color to(CSSOMString colorspace);
@@ -100,7 +109,12 @@ interface Color {
 };
 
 dictionary ToGamutOptions {
-	CSSOMString? method = "lch.c";
+	coordReference? method = "lch.c";
+};
+
+dictionary coordReference {
+	(CSSOMString or ColorSpace) colorSpace;
+	CSSOMString name;
 };
 
 // TODO: we want authors to be able to extend this
@@ -141,11 +155,10 @@ dictionary ColorJSON {
 	of {{Color}} objects must,
 	when called on |this|:
 
-	1. [Resolve coord to a coordinate reference](#coordinate-references)
-		and set `ref` to the result.
-	2. If `ref.colorSpace` is null, throw a `ReferenceError` (Color space does not exist)
-	3. Let `color = this.to(ref.colorSpace)`
-	4. Return `color.coords[ref.coord]`.
+	1. If there are two arguments, set refSpace to `ColorSpace.get(colorSpace)`.
+	2. If there is only one argument, set refSpace to `ColorSpace.get(this.colorSpace)`
+	3. Let `color = this.to(refSpace)`
+	4. Return `color.coords[refSpace.coord]`.
 </div>
 
 <div algorithm="Color.to()">
@@ -217,8 +230,8 @@ interface ColorSpace {
 	// Array of names for all registered color spaces
 	static readonly attribute FrozenArray<CSSOMString> names;
 
-	// Get ColorSpace object by name
-	static ColorSpace get(CSSOMString name);
+	// Lookup ColorSpace object by name
+	static ColorSpace get((CSSOMString or ColorSpace) name);
 };
 
 // White point x and y chromaticities
@@ -264,6 +277,16 @@ a white point. For convenience, D50 and D65 are predefined as follows:
 - `ColorSpaceWhitePoint.D50` is set to `new ColorSpaceWhitePoint(0.3457, 0.3585)`
 - `ColorSpaceWhitePoint.D65` is set to `new ColorSpaceWhitePoint(0.3127, 0.3290)`
 
+
+<div algorithm="ColorSpace.get()">
+	The <dfn method for=Color>get(name)</dfn> function:
+
+	1. If the argument is a `ColorSpace` object, return it
+	2. If the argument is a string, look up that string in the internal registry of ColorSpace objects.
+		1. If a ColorSpace object is found, return it.
+		2. Otherwise, throw a `ReferenceError` (Color space does not exist)
+</div>
+
 Algorithms {#algorithms}
 =========================
 
@@ -272,7 +295,8 @@ Getting and setting coordinates {#get-set}
 
 The `color.get()` and `color.set()` methods allow authors to read/write coordinates
 in the current color space or even other color spaces.
-The string argument is a [coordinate reference](#coordinate-references).
+Color spaces can be provided either as a string (color space id) or a CoorSpace object.
+Coordinates can be specified either as a name, or as a numerical index.
 
 `color.set(coord, value)` also accepts a value.
 If the value is a function, it is invoked immediately,
@@ -282,10 +306,6 @@ If the result is a number, the corresponding coordinate is set to it.
 Issue: Should we do something cool if the coord is set to a promise?
 What happens until the promise resolves?
 What if it's set to another value in the meantime?
-
-Issue: Should we support multiple manipulations via an object?
-Order matters though, and it's a bit of an antipattern to have an object parameter
-and depend on its property order.
 
 Color space lookup {#colorspace-lookup}
 ----------------------------------------
@@ -298,30 +318,6 @@ To look up a color space, follow the following steps:
 1. If `needle` is a `ColorSpace` object, let `needle = needle.name`
 2. If `needle` is a `USVString`, look up if there is an entry with that key in the internal Map of color names to `ColorSpace` objects.
 4. Return the `ColorSpace` object, or `null`, if none is found
-
-Coordinate references {#coordinate-references}
-----------------------------------------------
-
-Many methods in this API accept a string that is a reference to a particular color space coordinate.
-These are the steps to resolve an arbitrary string into a color space and corresponding coordinate:
-
-1. If string does not conform to `^([-a-z-]+\.)?[-a-z]+$` throw a `TypeError`
-2. Let `colorSpace` be the part of the string before `"."` and `coord` the part after.
-	1. If `colorSpace` is not empty,
-		[look up the color space name](#colorspace-lookup) and set `colorSpace` to the result
-	2. If `colorSpace` is empty, set `colorSpace` to the color space of the context color.
-4. If `colorSpace` is `null`, the coordinate is also `null` and the algorithm stops here.
-5. Look up `coord` in the color space's coordinate names.
-	Set `coord` to the index of the coordinate in the array of coordinate names.
-6. Return `{colorSpace, coord}`
-
-Note: This algorithm is used in a variety of places in this API,
-and thus does not make decisions about when to throw.
-Host syntax may throw for certain subsets of this syntax,
-invalid color spaces and so on.
-
-Issue: Should this algorithm be exposed to authors via a static method?
-See [APIs should allow introspection](https://github.com/w3ctag/design-principles/issues/300)
 
 Converting between color spaces {#converting-colorspaces}
 ---------------------------------------------------------
