@@ -81,7 +81,7 @@ interface Color {
 
 	// Get/set coordinates (in this or other color spaces)
 	double get(CSSOMString coord);
-	undefined set(CSSOMString coord, double value);
+	Color set(CSSOMString coord, double value);
 
 	// Convert to another color space
 	Color to(CSSOMString colorspace);
