@@ -76,7 +76,7 @@ interface Color {
 	constructor((Color or CSSColorValue or ColorJSON) color);
 
 	attribute CSSOMString colorSpace;
-	attribute sequence<double> coords;
+	attribute ObservableArray<double> coords;
 	attribute double alpha;
 
 	// Get/set coordinates (in this or other color spaces)
