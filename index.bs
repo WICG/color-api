@@ -83,9 +83,6 @@ interface Color {
 	double get(CSSOMString coord);
 	undefined set(CSSOMString coord, double value);
 
-	sequence<double> getAll((CSSOMString or ColorSpace) colorSpace);
-	undefined setAll((CSSOMString or ColorSpace) colorSpace, sequence<double> coords);
-
 	// Convert to another color space
 	Color to(CSSOMString colorspace);
 
@@ -120,11 +117,6 @@ dictionary ColorJSON {
 	double alpha;
 };
 </xmp>
-
-Issue: Should the argument in `getAll()` be optional?
-Then it basically returns `this.coords`.
-But if we do that, then to be consistent with `getAll()`,
-`setAll()` also needs to have its first argument be optional.
 
 <div algorithm=Color.constructor>
 	The `new Color(colorspace, coords, alpha)` constructor steps are:
