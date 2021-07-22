@@ -101,7 +101,8 @@ interface Color {
 	// Bring a color into gamut of a given colorspace
 	Color toGamut(optional CSSOMString colorSpace, optional ToGamutOptions options);
 
-	CSSOMString toString();
+	stringifier;
+	
 	ColorJSON toJSON();
 
 	// Color difference
