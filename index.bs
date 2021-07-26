@@ -86,9 +86,12 @@ interface Color {
 	Color set(
 		(CSSOMString or ColorSpace) colorSpace,
 		(CSSOMString or unsigned short) coord,
-		double value
+		(double or relativeCoordCallback) value
 	);
-	Color set((CSSOMString or unsigned short) coord, double value);
+	Color set(
+		(CSSOMString or unsigned short) coord,
+		(double or relativeCoordCallback) value
+	);
 	Color set((CSSOMString or ColorSpace) colorSpace, object values);
 	Color set(object values);
 
@@ -102,7 +105,7 @@ interface Color {
 	Color toGamut(optional CSSOMString colorSpace, optional ToGamutOptions options);
 
 	stringifier;
-	
+
 	ColorJSON toJSON();
 
 	// Color difference
@@ -131,6 +134,8 @@ dictionary ColorJSON {
 	sequence<double> coords;
 	double alpha;
 };
+
+callback relativeCoordCallback = double (double coord);
 </xmp>
 
 <div algorithm=Color.constructor>
