@@ -79,7 +79,7 @@ This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/
 
 ## API sketch
 
-Sample WebIDL and algorithms moved to [the draft spec](http://wicg.github.io/color-api/).
+Sample WebIDL and algorithms moved to [the draft spec](https://wicg.github.io/color-api/).
 
 ## Example usage
 

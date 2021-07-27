@@ -2,7 +2,7 @@
 Title:  Color API
 Status: Dream
 Work Status: exploring
-ED: http://wicg.github.io/color-api
+ED: https://wicg.github.io/color-api
 Shortname: color
 Level: 1
 Abstract: A color space agnostic class for color specification, manipulation, and conversion.
