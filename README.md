@@ -1,5 +1,7 @@
 # A native Color object for the Web Platform
 
+See the [draft specification](https://wicg.github.io/color-api/)
+
 ## Why?
 
 Many of Web Platform APIs need a WCG, HDR Color object:
@@ -79,7 +81,7 @@ This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/
 
 ## API sketch
 
-Sample WebIDL and algorithms moved to [the draft spec](https://projects.verou.me/color-api/).
+Sample WebIDL and algorithms moved to [the draft spec](https://wicg.github.io/color-api/).
 
 ## Example usage
 
