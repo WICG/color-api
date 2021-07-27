@@ -2,13 +2,13 @@
 Title:  Color API
 Status: Dream
 Work Status: exploring
-ED: https://leaverou.github.io/color-object
+ED: https://wicg.github.io/color-api
 Shortname: color
 Level: 1
 Abstract: A color space agnostic class for color specification, manipulation, and conversion.
 Editor: Chris Lilley, W3C, https://svgees.us/, w3cid 1438
 Editor: Lea Verou, Invited Expert, http://lea.verou.me/about, w3cid 52258
-Repository: leaverou/color-object
+Repository: wicg/color-api
 Inline Github Issues: title
 Markup Shorthands: markdown yes
 </pre>
