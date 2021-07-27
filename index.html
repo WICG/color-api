@@ -598,7 +598,6 @@
 	a[href]:focus,
 	a[href]:hover {
 		text-decoration-thickness: 2px;
-		text-decoratin
 	}
 	a[href]:active {
 		color: #c00;
@@ -1488,9 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
-  <link href="https://leaverou.github.io/color-object" rel="canonical">
-  <meta content="7992f574a2abc4056118f0465ce029e4dc6d4938" name="document-revision">
+  <meta content="Bikeshed version 59d067506, updated Fri Jul 23 15:43:29 2021 -0700" name="generator">
+  <link href="http://wicg.github.io/color-api" rel="canonical">
+  <meta content="ac201dece4c1d241929c9ab7daf75c224baebc94" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2081,13 +2080,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Color API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas, <time class="dt-updated" datetime="2021-07-26">26 July 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas, <time class="dt-updated" datetime="2021-07-27">27 July 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://leaverou.github.io/color-object">https://leaverou.github.io/color-object</a>
+     <dd><a class="u-url" href="http://wicg.github.io/color-api">http://wicg.github.io/color-api</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/leaverou/color-object/issues/">GitHub</a>
+     <dd><a href="https://github.com/wicg/color-api/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard" data-editor-id="1438"><a class="p-name fn u-url url" href="https://svgees.us/">Chris Lilley</a> (<span class="p-org org">W3C</span>)
@@ -2097,7 +2096,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 26 July 2021,
+In addition, as of 27 July 2021,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2156,7 +2155,7 @@ evaluating whether color pairs have sufficient contrast,
 or interpolating two colors (regardless of what color space they are specified in).</p>
    <p>The API presented in this document aims to address all of the <a href="https://github.com/LeaVerou/color-api#readme">common use cases</a>,
 and provide extensibility points to enable more complex use cases to be expressed.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/1" style="text-transform:none">leaverou/color-object/1</a><a href="https://github.com/leaverou/color-object/issues/1">Expand introduction</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a></div>
    <h2 class="heading settled" data-level="2" id="objects"><span class="secno">2. </span><span class="content">API objects</span><a class="self-link" href="#objects"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="color-objects"><span class="secno">2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color">Color</a></code> objects</span><a class="self-link" href="#color-objects"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①">Color</a></code> objects represent ...TBD</p>
@@ -2180,8 +2179,8 @@ and provide extensibility points to enable more complex use cases to be expresse
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="double" id="dom-color-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-alpha"></a></dfn>;
 
   // Get/set coordinates (in this or other color spaces)
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code><a class="self-link" href="#dom-color-get"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord" id="ref-for-dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑤"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get" id="ref-for-dom-color-get"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑤"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
 
   <a data-link-type="idl-name" href="#color" id="ref-for-color③"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(colorSpace, coord, value)" id="dom-color-set"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set"></a></dfn>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑥"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace②"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-colorspace"></a></dfn>,
@@ -2267,10 +2266,10 @@ and provide extensibility points to enable more complex use cases to be expresse
      <li data-md>
       <p>If <code>alpha</code> is not a number, coerce it to a number, then set the color’s <code>alpha</code> to this number.</p>
     </ol>
-    <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/3" style="text-transform:none">leaverou/color-object/3</a><a href="https://github.com/leaverou/color-object/issues/3">Describe the other constructor signatures</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a></div>
    </div>
    <div class="algorithm" data-algorithm="Color.get()">
-     The <dfn class="dfn-paneled idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code></dfn> method
+     The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code><a class="self-link" href="#dom-color-get-coord"></a></dfn> method
 	of <code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①⓪">Color</a></code> objects must,
 	when called on <var>this</var>: 
     <ol>
@@ -2331,8 +2330,8 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
      <li data-md>
       <p>Otherwise, return <code>true</code>.</p>
     </ol>
-    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a></div>
-    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/5" style="text-transform:none">leaverou/color-object/5</a><a href="https://github.com/leaverou/color-object/issues/5">`toGamut()` in place?</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a></div>
    </div>
    <h3 class="heading settled" data-level="2.2" id="colorspace-objects"><span class="secno">2.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#colorspace" id="ref-for-colorspace⑤">ColorSpace</a></code> objects</span><a class="self-link" href="#colorspace-objects"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
@@ -2390,10 +2389,10 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 <c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑧"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="fromBaseCallback" data-dfn-type="argument" data-export id="dom-frombasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-frombasecallback-coords"></a></dfn>);
 
 </pre>
-   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/20" style="text-transform:none">leaverou/color-object/20</a><a href="https://github.com/leaverou/color-object/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
    <ul>
@@ -2427,7 +2426,7 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2465,7 +2464,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <div class="issue no-marker" id="issue-d41d8cd9⑨"><a class="self-link" href="#issue-d41d8cd9⑨"></a><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑨"><a class="self-link" href="#issue-d41d8cd9⑨"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -2842,7 +2841,7 @@ Should throw if <code>name</code> exists.</p>
    <dt id="biblio-cssom-1">[CSSOM-1]
    <dd>Simon Pieters; Glenn Adams. <a href="https://www.w3.org/TR/cssom-1/">CSS Object Model (CSSOM)</a>. 17 March 2016. WD. URL: <a href="https://www.w3.org/TR/cssom-1/">https://www.w3.org/TR/cssom-1/</a>
    <dt id="biblio-rfc2119">[RFC2119]
-   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
    <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
   </dl>
@@ -2868,7 +2867,7 @@ Should throw if <code>name</code> exists.</p>
 
   // Get/set coordinates (in this or other color spaces)
   <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-color-get"><code><c- g>get</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code></a>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code></a>);
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
 
   <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set"><code><c- g>set</c-></code></a>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code></a>,
@@ -2982,21 +2981,27 @@ Should throw if <code>name</code> exists.</p>
 </pre>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/1" style="text-transform:none">leaverou/color-object/1</a><a href="https://github.com/leaverou/color-object/issues/1">Expand introduction</a><a href="#issue-d41d8cd9"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/3" style="text-transform:none">leaverou/color-object/3</a><a href="https://github.com/leaverou/color-object/issues/3">Describe the other constructor signatures</a><a href="#issue-d41d8cd9①"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9②"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/5" style="text-transform:none">leaverou/color-object/5</a><a href="https://github.com/leaverou/color-object/issues/5">`toGamut()` in place?</a><a href="#issue-d41d8cd9③"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/4" style="text-transform:none">leaverou/color-object/4</a><a href="https://github.com/leaverou/color-object/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9④"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/6" style="text-transform:none">leaverou/color-object/6</a><a href="https://github.com/leaverou/color-object/issues/6">How to declare which color space coordinates are angles?</a><a href="#issue-d41d8cd9⑤"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/7" style="text-transform:none">leaverou/color-object/7</a><a href="https://github.com/leaverou/color-object/issues/7">Matrix-based extensibility</a><a href="#issue-d41d8cd9⑥"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/20" style="text-transform:none">leaverou/color-object/20</a><a href="https://github.com/leaverou/color-object/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/8" style="text-transform:none">leaverou/color-object/8</a><a href="https://github.com/leaverou/color-object/issues/8">Promises</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/leaverou/color-object/issues/11" style="text-transform:none">leaverou/color-object/11</a><a href="https://github.com/leaverou/color-object/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑨"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a><a href="#issue-d41d8cd9"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a><a href="#issue-d41d8cd9①"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9②"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a><a href="#issue-d41d8cd9③"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9④"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a><a href="#issue-d41d8cd9⑤"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a><a href="#issue-d41d8cd9⑥"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑨"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-color">2.1. Color objects</a> <a href="#ref-for-color①">(2)</a> <a href="#ref-for-color②">(3)</a> <a href="#ref-for-color③">(4)</a> <a href="#ref-for-color④">(5)</a> <a href="#ref-for-color⑤">(6)</a> <a href="#ref-for-color⑥">(7)</a> <a href="#ref-for-color⑦">(8)</a> <a href="#ref-for-color⑧">(9)</a> <a href="#ref-for-color⑨">(10)</a> <a href="#ref-for-color①⓪">(11)</a> <a href="#ref-for-color①①">(12)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-color-get">
+   <b><a href="#dom-color-get">#dom-color-get</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-color-get">2.1. Color objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-togamutoptions">
@@ -3027,12 +3032,6 @@ Should throw if <code>name</code> exists.</p>
    <b><a href="#callbackdef-relativecoordcallback">#callbackdef-relativecoordcallback</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callbackdef-relativecoordcallback">2.1. Color objects</a> <a href="#ref-for-callbackdef-relativecoordcallback①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-color-get-coord">
-   <b><a href="#dom-color-get-coord">#dom-color-get-coord</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-color-get-coord">2.1. Color objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-color-ingamut">
