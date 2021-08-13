@@ -1,4 +1,4 @@
-# A native Color object for the Web Platform
+# A native Color object for the Web Platform ([Slides](https://docs.google.com/presentation/d/1Pkcxwdej2nWqYr0F6dYHpxcMaUMb11w_YmbZmcUV6Gc/edit?usp=sharing))
 
 ## Why?
 
