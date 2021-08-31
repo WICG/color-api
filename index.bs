@@ -8,6 +8,7 @@ Level: 1
 Abstract: A color space agnostic class for color specification, manipulation, and conversion.
 Editor: Chris Lilley, W3C, https://svgees.us/, w3cid 1438
 Editor: Lea Verou, Invited Expert, http://lea.verou.me/about, w3cid 52258
+Editor: Tab Atkins Jr., Google, http://xanthir.com/contact, w3cid 42199
 Repository: wicg/color-api
 Inline Github Issues: title
 Markup Shorthands: markdown yes
