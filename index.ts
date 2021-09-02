@@ -1,3 +1,5 @@
+.
+
 <pre class='metadata'>
 Title:  Color API
 Status: Dream
