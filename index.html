@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://wicg.github.io/color-api" rel="canonical">
-  <meta content="344ef5f32cb7ca07b78fc928b3778391705215f0" name="document-revision">
+  <meta content="25cb04c9ea8163e2be543c5b8dea341a31b97d70" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -1885,17 +1885,6 @@ c-[vg] { color: #0077aa } /* Name.Variable.Global */
 c-[vi] { color: #0077aa } /* Name.Variable.Instance */
 c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 </style>
-<style>/* style-var-click-highlighting */
-
-    var { cursor: pointer; }
-    var.selected0 { background-color: #F4D200; box-shadow: 0 0 0 2px #F4D200; }
-    var.selected1 { background-color: #FF87A2; box-shadow: 0 0 0 2px #FF87A2; }
-    var.selected2 { background-color: #96E885; box-shadow: 0 0 0 2px #96E885; }
-    var.selected3 { background-color: #3EEED2; box-shadow: 0 0 0 2px #3EEED2; }
-    var.selected4 { background-color: #EACFB6; box-shadow: 0 0 0 2px #EACFB6; }
-    var.selected5 { background-color: #82DDFF; box-shadow: 0 0 0 2px #82DDFF; }
-    var.selected6 { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBCF2; }
-    </style>
 <style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
@@ -2285,7 +2274,7 @@ and provide extensibility points to enable more complex use cases to be expresse
    <div class="algorithm" data-algorithm="Color.get()">
      The <dfn class="dfn-paneled idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code></dfn> method
 	of <code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①⓪">Color</a></code> objects must,
-	when called on <var>this</var>: 
+	when called on <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>: 
     <ol>
      <li data-md>
       <p>If there are two arguments, set refSpace to <code>ColorSpace.get(colorSpace)</code>.</p>
@@ -2300,7 +2289,7 @@ and provide extensibility points to enable more complex use cases to be expresse
    <div class="algorithm" data-algorithm="Color.to()">
      The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-to-colorspace"><code>to(colorSpace)</code><a class="self-link" href="#dom-color-to-colorspace"></a></dfn> method
 	of <code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①①">Color</a></code> objects must,
-	when called on <var>this</var>: 
+	when called on <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this①">this</a>: 
     <ol>
      <li data-md>
       <p><a href="#colorspace-lookup">Look up the color space object</a> from the current object’s <code>colorSpace</code> specifier.</p>
@@ -2346,8 +2335,8 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
      <li data-md>
       <p>Otherwise, return <code>true</code>.</p>
     </ol>
-    <div class="issue no-marker" id="issue-de9ad1c3"><a class="self-link" href="#issue-de9ad1c3"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
-    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`color.toGamut()` in place?</a></div>
+    <p class="issue" id="issue-de9ad1c3"><a class="self-link" href="#issue-de9ad1c3"></a> Color space objects should not have a method that is only present sometimes.
+	We need to do this some other way.</p>
    </div>
    <div class="algorithm" data-algorithm="Color.deltaE()">
      The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-deltae-color-deltaemethod"><code>deltaE(color, deltaEMethod)</code><a class="self-link" href="#dom-color-deltae-color-deltaemethod"></a></dfn> method,
@@ -2447,7 +2436,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
     <li data-md>
      <p><code>refMin</code> and <code>refMax</code></p>
    </ul>
-   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
    <ul>
@@ -2481,7 +2470,6 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2519,7 +2507,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -2877,6 +2865,12 @@ Should throw if <code>name</code> exists.</p>
     <li><a href="#ref-for-idl-sequence②">2.2. ColorSpace objects</a> <a href="#ref-for-idl-sequence③">(2)</a> <a href="#ref-for-idl-sequence④">(3)</a> <a href="#ref-for-idl-sequence⑤">(4)</a> <a href="#ref-for-idl-sequence⑥">(5)</a> <a href="#ref-for-idl-sequence⑦">(6)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-this">
+   <a href="https://webidl.spec.whatwg.org/#this">https://webidl.spec.whatwg.org/#this</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-this">2.1. Color objects</a> <a href="#ref-for-this①">(2)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-undefined">
    <a href="https://webidl.spec.whatwg.org/#idl-undefined">https://webidl.spec.whatwg.org/#idl-undefined</a><b>Referenced in:</b>
    <ul>
@@ -2919,6 +2913,7 @@ Should throw if <code>name</code> exists.</p>
      <li><span class="dfn-paneled" id="term-for-idl-object">object</span>
      <li><span class="dfn-paneled" id="term-for-idl-record">record</span>
      <li><span class="dfn-paneled" id="term-for-idl-sequence">sequence</span>
+     <li><span class="dfn-paneled" id="term-for-this">this</span>
      <li><span class="dfn-paneled" id="term-for-idl-undefined">undefined</span>
      <li><span class="dfn-paneled" id="term-for-idl-unsigned-short">unsigned short</span>
     </ul>
@@ -3094,11 +3089,10 @@ Should throw if <code>name</code> exists.</p>
   <div style="counter-reset:issue">
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a> <a class="issue-return" href="#issue-d41d8cd9" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a> <a class="issue-return" href="#issue-d41d8cd9①" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-de9ad1c3" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`color.toGamut()` in place?</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a> <a class="issue-return" href="#issue-d41d8cd9④" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a> <a class="issue-return" href="#issue-d41d8cd9⑤" title="Jump to section">↵</a></div>
+   <div class="issue"> Color space objects should not have a method that is only present sometimes.
+	We need to do this some other way. <a class="issue-return" href="#issue-de9ad1c3" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
@@ -3265,87 +3259,3 @@ document.body.addEventListener("click", function(e) {
 
 });
 </script>
-<script>/* script-var-click-highlighting */
-
-    document.addEventListener("click", e=>{
-        if(e.target.nodeName == "VAR") {
-            highlightSameAlgoVars(e.target);
-        }
-    });
-    {
-        const indexCounts = new Map();
-        const indexNames = new Map();
-        function highlightSameAlgoVars(v) {
-            // Find the algorithm container.
-            let algoContainer = null;
-            let searchEl = v;
-            while(algoContainer == null && searchEl != document.body) {
-                searchEl = searchEl.parentNode;
-                if(searchEl.hasAttribute("data-algorithm")) {
-                    algoContainer = searchEl;
-                }
-            }
-
-            // Not highlighting document-global vars,
-            // too likely to be unrelated.
-            if(algoContainer == null) return;
-
-            const algoName = algoContainer.getAttribute("data-algorithm");
-            const varName = getVarName(v);
-            const addClass = !v.classList.contains("selected");
-            let highlightClass = null;
-            if(addClass) {
-                const index = chooseHighlightIndex(algoName, varName);
-                indexCounts.get(algoName)[index] += 1;
-                indexNames.set(algoName+"///"+varName, index);
-                highlightClass = nameFromIndex(index);
-            } else {
-                const index = previousHighlightIndex(algoName, varName);
-                indexCounts.get(algoName)[index] -= 1;
-                highlightClass = nameFromIndex(index);
-            }
-
-            // Find all same-name vars, and toggle their class appropriately.
-            for(const el of algoContainer.querySelectorAll("var")) {
-                if(getVarName(el) == varName) {
-                    el.classList.toggle("selected", addClass);
-                    el.classList.toggle(highlightClass, addClass);
-                }
-            }
-        }
-        function getVarName(el) {
-            return el.textContent.replace(/(\s|\xa0)+/, " ").trim();
-        }
-        function chooseHighlightIndex(algoName, varName) {
-            let indexes = null;
-            if(indexCounts.has(algoName)) {
-                indexes = indexCounts.get(algoName);
-            } else {
-                // 7 classes right now
-                indexes = [0,0,0,0,0,0,0];
-                indexCounts.set(algoName, indexes);
-            }
-
-            // If the element was recently unclicked,
-            // *and* that color is still unclaimed,
-            // give it back the same color.
-            const lastIndex = previousHighlightIndex(algoName, varName);
-            if(indexes[lastIndex] === 0) return lastIndex;
-
-            // Find the earliest index with the lowest count.
-            const minCount = Math.min.apply(null, indexes);
-            let index = null;
-            for(var i = 0; i < indexes.length; i++) {
-                if(indexes[i] == minCount) {
-                    return i;
-                }
-            }
-        }
-        function previousHighlightIndex(algoName, varName) {
-            return indexNames.get(algoName+"///"+varName);
-        }
-        function nameFromIndex(index) {
-            return "selected" + index;
-        }
-    }
-    </script>

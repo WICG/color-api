@@ -163,7 +163,7 @@ callback relativeCoordCallback = double (double coord);
 <div algorithm="Color.get()">
 	The <dfn method for=Color>get(coord)</dfn> method
 	of {{Color}} objects must,
-	when called on |this|:
+	when called on [=this=]:
 
 	1. If there are two arguments, set refSpace to `ColorSpace.get(colorSpace)`.
 	2. If there is only one argument, set refSpace to `ColorSpace.get(this.colorSpace)`
@@ -174,7 +174,7 @@ callback relativeCoordCallback = double (double coord);
 <div algorithm="Color.to()">
 	The <dfn method for=Color>to(colorSpace)</dfn> method
 	of {{Color}} objects must,
-	when called on |this|:
+	when called on [=this=]:
 
 	1. [Look up the color space object](#colorspace-lookup)
 		from the current object’s `colorSpace` specifier.
@@ -209,10 +209,8 @@ callback relativeCoordCallback = double (double coord);
 	3. If `colorSpace` has an `inGamut` method, return `colorSpace.inGamut(this.coords)`
 	4. Otherwise, return `true`.
 
-	Issue(4): Color space objects should not have a method that is only present sometimes.
+	Issue: Color space objects should not have a method that is only present sometimes.
 	We need to do this some other way.
-
-	Issue(5):
 </div>
 
 <div algorithm="Color.deltaE()">
@@ -350,8 +348,6 @@ Coordinates can be specified either as a name, or as a numerical index.
 If the value is a function, it is invoked immediately,
 with the result of `color.get(coord)` being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.
-
-Issue(8):
 
 Color space lookup {#colorspace-lookup}
 ----------------------------------------
