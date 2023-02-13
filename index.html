@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://wicg.github.io/color-api" rel="canonical">
-  <meta content="45aa29a230ad475f16e477ff4041bda9572b2bb6" name="document-revision">
+  <meta content="8eaaefcb7a08d19d9a514dffdb07fa536d29553f" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2329,7 +2329,9 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 	must perform the following steps: 
     <ol>
      <li data-md>
-      <p>Let <code>colorSpace</code> be the <a href="#colorspace-lookup">color space object</a> from the current object’s <code>colorSpace</code> specifier.</p>
+      <p>If <code>colorSpace</code> is not specified, it is set to <code>this.colorSpace</code>.</p>
+     <li data-md>
+      <p>Set <code>colorSpace</code> to the result of <code>ColorSpace.get(colorSpace)</code>.</p>
      <li data-md>
       <p>If <code>this.inGamut(colorSpace) === true</code>, clone the current color and return it.</p>
      <li data-md>
@@ -2345,7 +2347,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
       <p>Otherwise, return <code>true</code>.</p>
     </ol>
     <div class="issue no-marker" id="issue-de9ad1c3"><a class="self-link" href="#issue-de9ad1c3"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
-    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`color.toGamut()` in place?</a></div>
    </div>
    <div class="algorithm" data-algorithm="Color.deltaE()">
      The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-deltae-color-deltaemethod"><code>deltaE(color, deltaEMethod)</code><a class="self-link" href="#dom-color-deltae-color-deltaemethod"></a></dfn> method,
@@ -3029,7 +3031,7 @@ Should throw if <code>name</code> exists.</p>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a> <a class="issue-return" href="#issue-d41d8cd9" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a> <a class="issue-return" href="#issue-d41d8cd9①" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-de9ad1c3" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`color.toGamut()` in place?</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a> <a class="issue-return" href="#issue-d41d8cd9④" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9⑤" title="Jump to section">↵</a></div>

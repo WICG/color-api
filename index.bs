@@ -199,8 +199,8 @@ callback relativeCoordCallback = double (double coord);
 	when called,
 	must perform the following steps:
 
-	1. Let `colorSpace` be the [color space object](#colorspace-lookup)
-		from the current object’s `colorSpace` specifier.
+	1. If `colorSpace` is not specified, it is set to `this.colorSpace`.
+	1. Set `colorSpace` to the result of `ColorSpace.get(colorSpace)`.
 	2. If `this.inGamut(colorSpace) === true`, clone the current color and return it.
 	3. Lookup the coordinate reference in `options.method` and
 	3. Let `color = this.to(colorSpace)`
