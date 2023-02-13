@@ -58,7 +58,7 @@ Issue(1):
 {{Color}} objects represent ...TBD
 
 <xmp class='idl'>
-[Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
+[Exposed=*]
 interface Color {
 	// Default constructor
 	constructor(
@@ -230,7 +230,7 @@ callback relativeCoordCallback = double (double coord);
 =======================
 
 <xmp class='idl'>
-[Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
+[Exposed=*]
 interface ColorSpace {
 	readonly attribute CSSOMString name;
 	readonly attribute ColorSpaceWhitePoint white;

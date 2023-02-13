@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://wicg.github.io/color-api" rel="canonical">
-  <meta content="11aadcdff6b13e43069fd766f1a0aea5100de07d" name="document-revision">
+  <meta content="5d860475e6bed7785ed41e0118c751b332d143a9" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2154,7 +2154,7 @@ and provide extensibility points to enable more complex use cases to be expresse
    <div class="issue no-marker" id="issue-d41d8cd9"><a class="self-link" href="#issue-d41d8cd9"></a><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a></div>
    <h2 class="heading settled" data-level="2" id="color"><span class="secno">2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#color①" id="ref-for-color①">Color</a></code> class</span><a class="self-link" href="#color"></a></h2>
    <p><code class="idl"><a data-link-type="idl" href="#color①" id="ref-for-color①①">Color</a></code> objects represent ...TBD</p>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[Exposed=*]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="color①"><code><c- g>Color</c-></code></dfn> {
   // Default constructor
   <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="constructor" data-export data-lt="Color(colorSpace, coords, alpha)|constructor(colorSpace, coords, alpha)|Color(colorSpace, coords)|constructor(colorSpace, coords)" id="dom-color-color"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-color-color"></a></dfn>(
@@ -2174,8 +2174,8 @@ and provide extensibility points to enable more complex use cases to be expresse
   <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="double" id="dom-color-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-alpha"></a></dfn>;
 
   // Get/set coordinates (in this or other color spaces)
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace①" id="ref-for-colorspace①②"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get" id="ref-for-dom-color-get"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code><a class="self-link" href="#dom-color-get"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace①" id="ref-for-colorspace①②"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord" id="ref-for-dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
 
   <a data-link-type="idl-name" href="#color①" id="ref-for-color①③"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(colorSpace, coord, value)" id="dom-color-set"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set"></a></dfn>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑤"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace①" id="ref-for-colorspace①③"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-colorspace"></a></dfn>,
@@ -2267,7 +2267,7 @@ and provide extensibility points to enable more complex use cases to be expresse
     <div class="issue no-marker" id="issue-d41d8cd9①"><a class="self-link" href="#issue-d41d8cd9①"></a><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a></div>
    </div>
    <div class="algorithm" data-algorithm="Color.get()">
-     The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code><a class="self-link" href="#dom-color-get-coord"></a></dfn> method
+     The <dfn class="dfn-paneled idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-get-coord"><code>get(coord)</code></dfn> method
 	of <code class="idl"><a data-link-type="idl" href="#color①" id="ref-for-color①①⓪">Color</a></code> objects must,
 	when called on <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this">this</a>: 
     <ol>
@@ -2351,7 +2351,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 	or allow authors to define their own methods.</p>
    </div>
    <h2 class="heading settled" data-level="3" id="colorspace"><span class="secno">3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#colorspace①" id="ref-for-colorspace①⑧">ColorSpace</a></code> class</span><a class="self-link" href="#colorspace"></a></h2>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[Exposed=*]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="colorspace①"><code><c- g>ColorSpace</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑤"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="CSSOMString" id="dom-colorspace-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-colorspace-name"></a></dfn>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="ColorSpaceWhitePoint" id="dom-colorspace-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspace-white"></a></dfn>;
@@ -2801,13 +2801,6 @@ Should throw if <code>name</code> exists.</p>
     <li><a href="#ref-for-idl-DOMString">3. ColorSpace class</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-Exposed">
-   <a href="https://webidl.spec.whatwg.org/#Exposed">https://webidl.spec.whatwg.org/#Exposed</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-Exposed">2. Color class</a>
-    <li><a href="#ref-for-Exposed①">3. ColorSpace class</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-idl-frozen-array">
    <a href="https://webidl.spec.whatwg.org/#idl-frozen-array">https://webidl.spec.whatwg.org/#idl-frozen-array</a><b>Referenced in:</b>
    <ul>
@@ -2899,7 +2892,6 @@ Should throw if <code>name</code> exists.</p>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-idl-DOMString">DOMString</span>
-     <li><span class="dfn-paneled" id="term-for-Exposed">Exposed</span>
      <li><span class="dfn-paneled" id="term-for-idl-frozen-array">FrozenArray</span>
      <li><span class="dfn-paneled" id="term-for-idl-observable-array">ObservableArray</span>
      <li><span class="dfn-paneled" id="term-for-idl-promise">Promise</span>
@@ -2928,7 +2920,7 @@ Should throw if <code>name</code> exists.</p>
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[Exposed=*]
 <c- b>interface</c-> <a href="#color①"><code><c- g>Color</c-></code></a> {
   // Default constructor
   <a href="#dom-color-color"><code><c- g>constructor</c-></code></a>(
@@ -2949,7 +2941,7 @@ Should throw if <code>name</code> exists.</p>
 
   // Get/set coordinates (in this or other color spaces)
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-color-get"><code><c- g>get</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace①"><c- n>ColorSpace</c-></a>) <a href="#dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code></a>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code></a>);
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
 
   <a data-link-type="idl-name" href="#color①"><c- n>Color</c-></a> <a href="#dom-color-set"><code><c- g>set</c-></code></a>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace①"><c- n>ColorSpace</c-></a>) <a href="#dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code></a>,
@@ -3008,7 +3000,7 @@ Should throw if <code>name</code> exists.</p>
 
 <c- b>callback</c-> <a href="#callbackdef-relativecoordcallback"><code><c- g>relativeCoordCallback</c-></code></a> = <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-relativecoordcallback-coord"><code><c- g>coord</c-></code></a>);
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+[Exposed=*]
 <c- b>interface</c-> <a href="#colorspace①"><code><c- g>ColorSpace</c-></code></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a data-readonly data-type="CSSOMString" href="#dom-colorspace-name"><code><c- g>name</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <a data-readonly data-type="ColorSpaceWhitePoint" href="#dom-colorspace-white"><code><c- g>white</c-></code></a>;
@@ -3095,12 +3087,6 @@ Should throw if <code>name</code> exists.</p>
     <li><a href="#ref-for-color①">2. Color class</a> <a href="#ref-for-color①①">(2)</a> <a href="#ref-for-color①②">(3)</a> <a href="#ref-for-color①③">(4)</a> <a href="#ref-for-color①④">(5)</a> <a href="#ref-for-color①⑤">(6)</a> <a href="#ref-for-color①⑥">(7)</a> <a href="#ref-for-color①⑦">(8)</a> <a href="#ref-for-color①⑧">(9)</a> <a href="#ref-for-color①⑨">(10)</a> <a href="#ref-for-color①①⓪">(11)</a> <a href="#ref-for-color①①①">(12)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-color-get">
-   <b><a href="#dom-color-get">#dom-color-get</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-color-get">2. Color class</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="dictdef-togamutoptions">
    <b><a href="#dictdef-togamutoptions">#dictdef-togamutoptions</a></b><b>Referenced in:</b>
    <ul>
@@ -3129,6 +3115,12 @@ Should throw if <code>name</code> exists.</p>
    <b><a href="#callbackdef-relativecoordcallback">#callbackdef-relativecoordcallback</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-callbackdef-relativecoordcallback">2. Color class</a> <a href="#ref-for-callbackdef-relativecoordcallback①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-color-get-coord">
+   <b><a href="#dom-color-get-coord">#dom-color-get-coord</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-color-get-coord">2. Color class</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-color-ingamut">
