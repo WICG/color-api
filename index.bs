@@ -52,11 +52,8 @@ and provide extensibility points to enable more complex use cases to be expresse
 
 Issue(1):
 
-API objects {#objects}
+{{Color}} class {#color}
 =======================
-
-{{Color}} objects {#color-objects}
------------------------------------
 
 {{Color}} objects represent ...TBD
 
@@ -229,8 +226,8 @@ callback relativeCoordCallback = double (double coord);
 	or allow authors to define their own methods.
 </div>
 
-{{ColorSpace}} objects {#colorspace-objects}
----------------------------------------------
+{{ColorSpace}} class {#colorspace}
+=======================
 
 <xmp class='idl'>
 [Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
