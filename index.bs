@@ -103,7 +103,10 @@ interface Color {
 	boolean inGamut(optional CSSOMString colorspace);
 
 	// Bring a color into gamut of a given colorspace
-	Color toGamut(optional CSSOMString colorSpace, optional ToGamutOptions options);
+	Color toGamut(
+		optional (CSSOMString or ColorSpace) colorSpace,
+		optional ToGamutOptions options = {}
+	);
 
 	stringifier;
 
@@ -131,7 +134,7 @@ enum DeltaEMethod {
 };
 
 dictionary ColorJSON {
-	CSSOMString colorSpace;
+	(CSSOMString or ColorSpace) colorSpace;
 	sequence<double> coords;
 	double alpha;
 };
