@@ -1489,7 +1489,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://wicg.github.io/color-api" rel="canonical">
-  <meta content="fb2c573618c871aa4c9e2683e6541a0b29fdefe7" name="document-revision">
+  <meta content="344ef5f32cb7ca07b78fc928b3778391705215f0" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -2438,10 +2438,16 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
 <c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑥"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②④"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②⑤"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="fromBaseCallback" data-dfn-type="argument" data-export id="dom-frombasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-frombasecallback-coords"></a></dfn>);
 
 </pre>
-   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
+   <p>Color space coordinates must specify at least one of:</p>
+   <ul>
+    <li data-md>
+     <p><code>type: "angle"</code></p>
+    <li data-md>
+     <p><code>min</code> and <code>max</code></p>
+    <li data-md>
+     <p><code>refMin</code> and <code>refMax</code></p>
+   </ul>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
    <ul>
@@ -2475,7 +2481,7 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2513,7 +2519,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -3090,12 +3096,9 @@ Should throw if <code>name</code> exists.</p>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a> <a class="issue-return" href="#issue-d41d8cd9①" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-de9ad1c3" title="Jump to section">↵</a></div>
    <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`color.toGamut()` in place?</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a> <a class="issue-return" href="#issue-d41d8cd9④" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9⑤" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a> <a class="issue-return" href="#issue-d41d8cd9⑥" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a> <a class="issue-return" href="#issue-d41d8cd9⑦" title="Jump to section">↵</a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a> <a class="issue-return" href="#issue-d41d8cd9⑧" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a> <a class="issue-return" href="#issue-d41d8cd9④" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a> <a class="issue-return" href="#issue-d41d8cd9⑤" title="Jump to section">↵</a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>

@@ -307,13 +307,17 @@ callback fromBaseCallback = sequence<double> (sequence<double> coords);
 
 </xmp>
 
-Issue(4):
+Color space coordinates must specify at least one of:
+- `type: "angle"`
+- `min` and `max`
+- `refMin` and `refMax`
 
-Issue(6):
+
+
 
 Issue(7):
 
-Issue(20):
+
 
 The `ColorSpaceWhitePoint` interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:
