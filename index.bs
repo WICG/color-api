@@ -235,7 +235,6 @@ callback relativeCoordCallback = double (double coord);
 [Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]
 interface ColorSpace {
 	readonly attribute CSSOMString name;
-	readonly attribute CSSOMString? iccProfile;
 	readonly attribute ColorSpaceWhitePoint white;
 	readonly attribute ColorSpace? base;
 	readonly attribute sequence<CSSOMString> coords;
@@ -255,7 +254,7 @@ interface ColorSpace {
 	static ColorSpace get((CSSOMString or ColorSpace) name);
 
 	// Load ICC profile and create a ColorSpace object from it
-	static Promise<ColorSpace> load(CSSOMString url);
+	static Promise<ColorSpace> fromICCProfile((Response or CSSOMString) resource, reducedOptions options);
 };
 
 // White point x and y chromaticities
