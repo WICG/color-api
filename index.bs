@@ -272,7 +272,8 @@ interface ColorSpaceWhitePoint {
 };
 
 dictionary ReducedColorSpaceOptions {
-	record<CSSOMString, ColorSpaceCoordinate> coords; // coord names
+	// Coordinate names and optional metadata
+	record<DOMString, ColorSpaceCoordinate> coords;
 };
 
 dictionary ColorSpaceOptions : ReducedColorSpaceOptions {
