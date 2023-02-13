@@ -76,7 +76,7 @@ interface Color {
 	// Clone color instance or create from JSON-style object
 	constructor((Color or CSSColorValue or ColorJSON) color);
 
-	attribute CSSOMString colorSpace;
+	attribute ColorSpace colorSpace;
 	attribute ObservableArray<double> coords;
 	attribute double alpha;
 
