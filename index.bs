@@ -272,7 +272,7 @@ interface ColorSpaceWhitePoint {
 };
 
 dictionary ReducedColorSpaceOptions {
-	sequence<CSSOMString> coords; // coord names
+	record<CSSOMString, ColorSpaceCoordinate> coords; // coord names
 };
 
 dictionary ColorSpaceOptions : ReducedColorSpaceOptions {
@@ -285,6 +285,20 @@ dictionary ColorSpaceOptions : ReducedColorSpaceOptions {
 	toBaseCallback toBase;
 	fromBaseCallback fromBase;
 };
+
+dictionary ColorSpaceCoordinate {
+	ColorSpaceCoordinateType? type = "number";
+
+	// Gamut limits
+	double? min;
+	double? max;
+
+	// Reference range
+	double? refMin;
+	double? refMax;
+};
+
+enum ColorSpaceCoordinateType { "angle", "number" };
 
 callback inGamutCallback = boolean (sequence<double> coords);
 callback toBaseCallback = sequence<double> (sequence<double> coords);
