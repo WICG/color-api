@@ -200,15 +200,32 @@ callback relativeCoordCallback = double (double coord);
 		from the current object’s `colorSpace` specifier.
 	2. If `this.inGamut(colorSpace) === true`, clone the current color and return it.
 	3. Lookup the coordinate reference in `options.method` and
-	3. Let `color = this.to()`
+	3. Let `color = this.to(colorSpace)`
 	2. While the color space does *not* have an `inGamut` method,
 		set `colorSpace = ColorSpace.get(colorSpace.base)`
 	3. If `colorSpace` has an `inGamut` method, return `colorSpace.inGamut(this.coords)`
 	4. Otherwise, return `true`.
 
-	Issue(4):
+	Issue(4): Color space objects should not have a method that is only present sometimes.
+	We need to do this some other way.
 
 	Issue(5):
+</div>
+
+<div algorithm="Color.deltaE()">
+	The <dfn method for=Color>deltaE(color, deltaEMethod)</dfn> method,
+	when called,
+	must perform the following steps:
+
+	1. Calculate the color difference between `this` and `color` using the method specified by `deltaEMethod` (see prose below)
+	2. Return the result.
+
+	The value `"76"` corresponds to the deltaE 76 method,
+	which is a fast but inaccurate method.
+	The value `"2000"` corresponds to the deltaE 2000 method,
+	which is a slower but more accurate method.
+	Future versions of this specification may add additional methods,
+	or allow authors to define their own methods.
 </div>
 
 {{ColorSpace}} objects {#colorspace-objects}

@@ -12,7 +12,7 @@
  *   - .toc for the Table of Contents (<ol class="toc">)
  *     + <span class="secno"> for the section numbers
  *   - #toc for the Table of Contents (<nav id="toc">)
- *   - ul.index for Indices (<a href="#ref">term</a><span>, in §N.M</span>)
+ *   - ul.index for Indices (<a href="#ref">term</a><span>, in § N.M</span>)
  *   - table.index for Index Tables (e.g. for properties or elements)
  *
  * Structural Markup
@@ -598,7 +598,6 @@
 	a[href]:focus,
 	a[href]:hover {
 		text-decoration-thickness: 2px;
-		text-decoratin
 	}
 	a[href]:active {
 		color: #c00;
@@ -1270,7 +1269,7 @@ Possible extra rowspan handling
 	ul.index ul,
 	ul.index dl { font-size: smaller; }
 	@media not print {
-		ul.index li span:not(.dfn-paneled) {
+		ul.index li a + span {
 			white-space: nowrap;
 			color: transparent; }
 		ul.index li a:hover + span,
@@ -1488,9 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 5c7bc9381, updated Wed May 12 18:18:08 2021 -0700" name="generator">
+  <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://wicg.github.io/color-api" rel="canonical">
-  <meta content="9ba94af6e4eacaccd75238a39c9d6d00ccd85b71" name="document-revision">
+  <meta content="a8f5b6ba3737d3a8903f929b7d38af1aa4502990" name="document-revision">
 <style>
 /* Put nice boxes around each algorithm.
    Credits: from Typed OM
@@ -1750,6 +1749,16 @@ figcaption:not(.no-marker)::before {
 }
 
 .dfn-paneled { cursor: pointer; }
+</style>
+<style>/* style-issues */
+
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
 </style>
 <style>/* style-md-lists */
 
@@ -2081,7 +2090,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Color API</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas, <time class="dt-updated" datetime="2021-08-31">31 August 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">A Collection of Interesting Ideas, <time class="dt-updated" datetime="2023-02-13">13 February 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2098,7 +2107,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" height="15" src="https://licensebuttons.net/p/zero/1.0/80x15.png" width="80"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 31 August 2021,
+In addition, as of 13 February 2023,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -2161,13 +2170,13 @@ and provide extensibility points to enable more complex use cases to be expresse
    <h2 class="heading settled" data-level="2" id="objects"><span class="secno">2. </span><span class="content">API objects</span><a class="self-link" href="#objects"></a></h2>
    <h3 class="heading settled" data-level="2.1" id="color-objects"><span class="secno">2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color">Color</a></code> objects</span><a class="self-link" href="#color-objects"></a></h3>
    <p><code class="idl"><a data-link-type="idl" href="#color" id="ref-for-color①">Color</a></code> objects represent ...TBD</p>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="color"><code><c- g>Color</c-></code></dfn> {
   // Default constructor
   <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="constructor" data-export data-lt="Color(colorSpace, coords, alpha)|constructor(colorSpace, coords, alpha)|Color(colorSpace, coords)|constructor(colorSpace, coords)" id="dom-color-color"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-color-color"></a></dfn>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/Color(colorSpace, coords, alpha), Color/constructor(colorSpace, coords, alpha), Color/Color(colorSpace, coords), Color/constructor(colorSpace, coords)" data-dfn-type="argument" data-export id="dom-color-color-colorspace-coords-alpha-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-color-colorspace-coords-alpha-colorspace"></a></dfn>,
-    <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="Color/Color(colorSpace, coords, alpha), Color/constructor(colorSpace, coords, alpha), Color/Color(colorSpace, coords), Color/constructor(colorSpace, coords)" data-dfn-type="argument" data-export id="dom-color-color-colorspace-coords-alpha-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-color-color-colorspace-coords-alpha-coords"></a></dfn>,
-    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color/Color(colorSpace, coords, alpha), Color/constructor(colorSpace, coords, alpha), Color/Color(colorSpace, coords), Color/constructor(colorSpace, coords)" data-dfn-type="argument" data-export id="dom-color-color-colorspace-coords-alpha-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-color-colorspace-coords-alpha-alpha"></a></dfn> = 1
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="Color/Color(colorSpace, coords, alpha), Color/constructor(colorSpace, coords, alpha), Color/Color(colorSpace, coords), Color/constructor(colorSpace, coords)" data-dfn-type="argument" data-export id="dom-color-color-colorspace-coords-alpha-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-color-color-colorspace-coords-alpha-coords"></a></dfn>,
+    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color/Color(colorSpace, coords, alpha), Color/constructor(colorSpace, coords, alpha), Color/Color(colorSpace, coords), Color/constructor(colorSpace, coords)" data-dfn-type="argument" data-export id="dom-color-color-colorspace-coords-alpha-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-color-colorspace-coords-alpha-alpha"></a></dfn> = 1
   );
 
   // Parse CSS color
@@ -2177,30 +2186,30 @@ and provide extensibility points to enable more complex use cases to be expresse
   <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="constructor" data-export data-lt="Color(color)|constructor(color)" id="dom-color-color-color"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-color-color-color"></a></dfn>((<a data-link-type="idl-name" href="#color" id="ref-for-color②"><c- n>Color</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="https://drafts.css-houdini.org/css-typed-om-1/#csscolorvalue" id="ref-for-csscolorvalue"><c- n>CSSColorValue</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#dictdef-colorjson" id="ref-for-dictdef-colorjson"><c- n>ColorJSON</c-></a>) <dfn class="idl-code" data-dfn-for="Color/Color(color), Color/constructor(color)" data-dfn-type="argument" data-export id="dom-color-color-color-color"><code><c- g>color</c-></code><a class="self-link" href="#dom-color-color-color-color"></a></dfn>);
 
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="CSSOMString" id="dom-color-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-colorspace"></a></dfn>;
-  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-observable-array" id="ref-for-idl-observable-array"><c- b>ObservableArray</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="ObservableArray<double>" id="dom-color-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-color-coords"></a></dfn>;
-  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="double" id="dom-color-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-alpha"></a></dfn>;
+  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-observable-array" id="ref-for-idl-observable-array"><c- b>ObservableArray</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="ObservableArray<double>" id="dom-color-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-color-coords"></a></dfn>;
+  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="attribute" data-export data-type="double" id="dom-color-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-color-alpha"></a></dfn>;
 
   // Get/set coordinates (in this or other color spaces)
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code><a class="self-link" href="#dom-color-get"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord" id="ref-for-dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑤"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="get(colorSpace, coord)" id="dom-color-get"><code><c- g>get</c-></code><a class="self-link" href="#dom-color-get"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring③"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-colorspace"></a></dfn>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring④"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(colorSpace, coord)" data-dfn-type="argument" data-export id="dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-colorspace-coord-coord"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord" id="ref-for-dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑤"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/get(coord)" data-dfn-type="argument" data-export id="dom-color-get-coord-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-get-coord-coord"></a></dfn>);
 
   <a data-link-type="idl-name" href="#color" id="ref-for-color③"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(colorSpace, coord, value)" id="dom-color-set"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set"></a></dfn>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑥"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace②"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-colorspace"></a></dfn>,
-    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑦"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short②"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-coord"></a></dfn>,
-    (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback" id="ref-for-callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-value"><code><c- g>value</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-value"></a></dfn>
+    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑦"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short②"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-coord"></a></dfn>,
+    (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑥"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback" id="ref-for-callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, coord, value)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-coord-value-value"><code><c- g>value</c-></code><a class="self-link" href="#dom-color-set-colorspace-coord-value-value"></a></dfn>
   );
   <a data-link-type="idl-name" href="#color" id="ref-for-color④"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(coord, value)" id="dom-color-set-coord-value"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set-coord-value"></a></dfn>(
-    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑧"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short" id="ref-for-idl-unsigned-short③"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(coord, value)" data-dfn-type="argument" data-export id="dom-color-set-coord-value-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-set-coord-value-coord"></a></dfn>,
-    (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback" id="ref-for-callbackdef-relativecoordcallback①"><c- n>relativeCoordCallback</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(coord, value)" data-dfn-type="argument" data-export id="dom-color-set-coord-value-value"><code><c- g>value</c-></code><a class="self-link" href="#dom-color-set-coord-value-value"></a></dfn>
+    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑧"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short③"><c- b>unsigned</c-> <c- b>short</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(coord, value)" data-dfn-type="argument" data-export id="dom-color-set-coord-value-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-color-set-coord-value-coord"></a></dfn>,
+    (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑦"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback" id="ref-for-callbackdef-relativecoordcallback①"><c- n>relativeCoordCallback</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(coord, value)" data-dfn-type="argument" data-export id="dom-color-set-coord-value-value"><code><c- g>value</c-></code><a class="self-link" href="#dom-color-set-coord-value-value"></a></dfn>
   );
-  <a data-link-type="idl-name" href="#color" id="ref-for-color⑤"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(colorSpace, values)" id="dom-color-set-colorspace-values"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set-colorspace-values"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑨"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace③"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, values)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-values-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-set-colorspace-values-colorspace"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, values)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-values-values"><code><c- g>values</c-></code><a class="self-link" href="#dom-color-set-colorspace-values-values"></a></dfn>);
-  <a data-link-type="idl-name" href="#color" id="ref-for-color⑥"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(values)" id="dom-color-set-values"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set-values"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object①"><c- b>object</c-></a> <dfn class="idl-code" data-dfn-for="Color/set(values)" data-dfn-type="argument" data-export id="dom-color-set-values-values"><code><c- g>values</c-></code><a class="self-link" href="#dom-color-set-values-values"></a></dfn>);
+  <a data-link-type="idl-name" href="#color" id="ref-for-color⑤"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(colorSpace, values)" id="dom-color-set-colorspace-values"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set-colorspace-values"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring⑨"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace③"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, values)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-values-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-set-colorspace-values-colorspace"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a> <dfn class="idl-code" data-dfn-for="Color/set(colorSpace, values)" data-dfn-type="argument" data-export id="dom-color-set-colorspace-values-values"><code><c- g>values</c-></code><a class="self-link" href="#dom-color-set-colorspace-values-values"></a></dfn>);
+  <a data-link-type="idl-name" href="#color" id="ref-for-color⑥"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="set(values)" id="dom-color-set-values"><code><c- g>set</c-></code><a class="self-link" href="#dom-color-set-values"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object①"><c- b>object</c-></a> <dfn class="idl-code" data-dfn-for="Color/set(values)" data-dfn-type="argument" data-export id="dom-color-set-values-values"><code><c- g>values</c-></code><a class="self-link" href="#dom-color-set-values-values"></a></dfn>);
 
   // Convert to another color space
   <a data-link-type="idl-name" href="#color" id="ref-for-color⑦"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="to(colorspace)" id="dom-color-to"><code><c- g>to</c-></code><a class="self-link" href="#dom-color-to"></a></dfn>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⓪"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="Color/to(colorspace)" data-dfn-type="argument" data-export id="dom-color-to-colorspace-colorspace"><code><c- g>colorspace</c-></code><a class="self-link" href="#dom-color-to-colorspace-colorspace"></a></dfn>);
 
   // Check whether a color is in gamut of a given color space
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-ingamut" id="ref-for-dom-color-ingamut"><c- g>inGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①①"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="Color/inGamut(colorspace), Color/inGamut()" data-dfn-type="argument" data-export id="dom-color-ingamut-colorspace-colorspace"><code><c- g>colorspace</c-></code><a class="self-link" href="#dom-color-ingamut-colorspace-colorspace"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-ingamut" id="ref-for-dom-color-ingamut"><c- g>inGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①①"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="Color/inGamut(colorspace), Color/inGamut()" data-dfn-type="argument" data-export id="dom-color-ingamut-colorspace-colorspace"><code><c- g>colorspace</c-></code><a class="self-link" href="#dom-color-ingamut-colorspace-colorspace"></a></dfn>);
 
   // Bring a color into gamut of a given colorspace
   <a data-link-type="idl-name" href="#color" id="ref-for-color⑧"><c- n>Color</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-togamut" id="ref-for-dom-color-togamut"><c- g>toGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①②"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="Color/toGamut(colorSpace, options), Color/toGamut(colorSpace), Color/toGamut()" data-dfn-type="argument" data-export id="dom-color-togamut-colorspace-options-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-color-togamut-colorspace-options-colorspace"></a></dfn>, <c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-togamutoptions" id="ref-for-dictdef-togamutoptions"><c- n>ToGamutOptions</c-></a> <dfn class="idl-code" data-dfn-for="Color/toGamut(colorSpace, options), Color/toGamut(colorSpace), Color/toGamut()" data-dfn-type="argument" data-export id="dom-color-togamut-colorspace-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-color-togamut-colorspace-options-options"></a></dfn>);
@@ -2210,7 +2219,7 @@ and provide extensibility points to enable more complex use cases to be expresse
   <a data-link-type="idl-name" href="#dictdef-colorjson" id="ref-for-dictdef-colorjson①"><c- n>ColorJSON</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="toJSON()" id="dom-color-tojson"><code><c- g>toJSON</c-></code><a class="self-link" href="#dom-color-tojson"></a></dfn>();
 
   // Color difference
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="deltaE(color, method)|deltaE(color)" id="dom-color-deltae"><code><c- g>deltaE</c-></code><a class="self-link" href="#dom-color-deltae"></a></dfn>(<a data-link-type="idl-name" href="#color" id="ref-for-color⑨"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color/deltaE(color, method), Color/deltaE(color)" data-dfn-type="argument" data-export id="dom-color-deltae-color-method-color"><code><c- g>color</c-></code><a class="self-link" href="#dom-color-deltae-color-method-color"></a></dfn>, <c- b>optional</c-> <a data-link-type="idl-name" href="#enumdef-deltaemethod" id="ref-for-enumdef-deltaemethod"><c- n>DeltaEMethod</c-></a> <dfn class="idl-code" data-dfn-for="Color/deltaE(color, method), Color/deltaE(color)" data-dfn-type="argument" data-export id="dom-color-deltae-color-method-method"><code><c- g>method</c-></code><a class="self-link" href="#dom-color-deltae-color-method-method"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑧"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export data-lt="deltaE(color, method)|deltaE(color)" id="dom-color-deltae"><code><c- g>deltaE</c-></code><a class="self-link" href="#dom-color-deltae"></a></dfn>(<a data-link-type="idl-name" href="#color" id="ref-for-color⑨"><c- n>Color</c-></a> <dfn class="idl-code" data-dfn-for="Color/deltaE(color, method), Color/deltaE(color)" data-dfn-type="argument" data-export id="dom-color-deltae-color-method-color"><code><c- g>color</c-></code><a class="self-link" href="#dom-color-deltae-color-method-color"></a></dfn>, <c- b>optional</c-> <a data-link-type="idl-name" href="#enumdef-deltaemethod" id="ref-for-enumdef-deltaemethod"><c- n>DeltaEMethod</c-></a> <dfn class="idl-code" data-dfn-for="Color/deltaE(color, method), Color/deltaE(color)" data-dfn-type="argument" data-export id="dom-color-deltae-color-method-method"><code><c- g>method</c-></code><a class="self-link" href="#dom-color-deltae-color-method-method"></a></dfn>);
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-togamutoptions"><code><c- g>ToGamutOptions</c-></code></dfn> {
@@ -2232,11 +2241,11 @@ and provide extensibility points to enable more complex use cases to be expresse
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-colorjson"><code><c- g>ColorJSON</c-></code></dfn> {
   <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑤"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorJSON" data-dfn-type="dict-member" data-export data-type="CSSOMString " id="dom-colorjson-colorspace"><code><c- g>colorSpace</c-></code><a class="self-link" href="#dom-colorjson-colorspace"></a></dfn>;
-  <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence①"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="ColorJSON" data-dfn-type="dict-member" data-export data-type="sequence<double> " id="dom-colorjson-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorjson-coords"></a></dfn>;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorJSON" data-dfn-type="dict-member" data-export data-type="double " id="dom-colorjson-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-colorjson-alpha"></a></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence①"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="ColorJSON" data-dfn-type="dict-member" data-export data-type="sequence<double> " id="dom-colorjson-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorjson-coords"></a></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⓪"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorJSON" data-dfn-type="dict-member" data-export data-type="double " id="dom-colorjson-alpha"><code><c- g>alpha</c-></code><a class="self-link" href="#dom-colorjson-alpha"></a></dfn>;
 };
 
-<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-relativecoordcallback"><code><c- g>relativeCoordCallback</c-></code></dfn> = <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a> (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="relativeCoordCallback" data-dfn-type="argument" data-export id="dom-relativecoordcallback-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-relativecoordcallback-coord"></a></dfn>);
+<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-relativecoordcallback"><code><c- g>relativeCoordCallback</c-></code></dfn> = <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①①"><c- b>double</c-></a> (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①②"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="relativeCoordCallback" data-dfn-type="argument" data-export id="dom-relativecoordcallback-coord"><code><c- g>coord</c-></code><a class="self-link" href="#dom-relativecoordcallback-coord"></a></dfn>);
 </pre>
    <div class="algorithm" data-algorithm="Color.constructor">
      The <code>new Color(colorspace, coords, alpha)</code> constructor steps are: 
@@ -2323,7 +2332,7 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
      <li data-md>
       <p>Lookup the coordinate reference in <code>options.method</code> and</p>
      <li data-md>
-      <p>Let <code>color = this.to()</code></p>
+      <p>Let <code>color = this.to(colorSpace)</code></p>
      <li data-md>
       <p>While the color space does <em>not</em> have an <code>inGamut</code> method,
 set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
@@ -2332,49 +2341,66 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
      <li data-md>
       <p>Otherwise, return <code>true</code>.</p>
     </ol>
-    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
-    <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a></div>
+    <div class="issue no-marker" id="issue-de9ad1c3"><a class="self-link" href="#issue-de9ad1c3"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
+    <div class="issue no-marker" id="issue-d41d8cd9②"><a class="self-link" href="#issue-d41d8cd9②"></a><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a></div>
+   </div>
+   <div class="algorithm" data-algorithm="Color.deltaE()">
+     The <dfn class="idl-code" data-dfn-for="Color" data-dfn-type="method" data-export id="dom-color-deltae-color-deltaemethod"><code>deltaE(color, deltaEMethod)</code><a class="self-link" href="#dom-color-deltae-color-deltaemethod"></a></dfn> method,
+	when called,
+	must perform the following steps: 
+    <ol>
+     <li data-md>
+      <p>Calculate the color difference between <code>this</code> and <code>color</code> using the method specified by <code>deltaEMethod</code> (see prose below)</p>
+     <li data-md>
+      <p>Return the result.</p>
+    </ol>
+    <p>The value <code>"76"</code> corresponds to the deltaE 76 method,
+	which is a fast but inaccurate method.
+	The value <code>"2000"</code> corresponds to the deltaE 2000 method,
+	which is a slower but more accurate method.
+	Future versions of this specification may add additional methods,
+	or allow authors to define their own methods.</p>
    </div>
    <h3 class="heading settled" data-level="2.2" id="colorspace-objects"><span class="secno">2.2. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#colorspace" id="ref-for-colorspace⑤">ColorSpace</a></code> objects</span><a class="self-link" href="#colorspace-objects"></a></h3>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="colorspace"><code><c- g>ColorSpace</c-></code></dfn> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑥"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="CSSOMString" id="dom-colorspace-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-colorspace-name"></a></dfn>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑦"><c- n>CSSOMString</c-></a>? <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="CSSOMString?" id="dom-colorspace-iccprofile"><code><c- g>iccProfile</c-></code><a class="self-link" href="#dom-colorspace-iccprofile"></a></dfn>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="ColorSpaceWhitePoint" id="dom-colorspace-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspace-white"></a></dfn>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace⑥"><c- n>ColorSpace</c-></a>? <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="ColorSpace?" id="dom-colorspace-base"><code><c- g>base</c-></code><a class="self-link" href="#dom-colorspace-base"></a></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑧"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="sequence<CSSOMString>" id="dom-colorspace-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorspace-coords"></a></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence②"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑧"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="sequence<CSSOMString>" id="dom-colorspace-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorspace-coords"></a></dfn>;
 
   <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="constructor" data-export data-lt="ColorSpace(name, options)|constructor(name, options)" id="dom-colorspace-colorspace"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-colorspace-colorspace"></a></dfn>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring①⑨"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/ColorSpace(name, options), ColorSpace/constructor(name, options)" data-dfn-type="argument" data-export id="dom-colorspace-colorspace-name-options-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-colorspace-colorspace-name-options-name"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-colorspaceoptions" id="ref-for-dictdef-colorspaceoptions"><c- n>ColorSpaceOptions</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/ColorSpace(name, options), ColorSpace/constructor(name, options)" data-dfn-type="argument" data-export id="dom-colorspace-colorspace-name-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-colorspace-colorspace-name-options-options"></a></dfn>);
 
   // Register a ColorSpace object
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-undefined" id="ref-for-idl-undefined"><c- b>undefined</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="register(colorspace)" id="dom-colorspace-register"><code><c- g>register</c-></code><a class="self-link" href="#dom-colorspace-register"></a></dfn>(<a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace⑦"><c- n>ColorSpace</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/register(colorspace)" data-dfn-type="argument" data-export id="dom-colorspace-register-colorspace-colorspace"><code><c- g>colorspace</c-></code><a class="self-link" href="#dom-colorspace-register-colorspace-colorspace"></a></dfn>);
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined"><c- b>undefined</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="register(colorspace)" id="dom-colorspace-register"><code><c- g>register</c-></code><a class="self-link" href="#dom-colorspace-register"></a></dfn>(<a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace⑦"><c- n>ColorSpace</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/register(colorspace)" data-dfn-type="argument" data-export id="dom-colorspace-register-colorspace-colorspace"><code><c- g>colorspace</c-></code><a class="self-link" href="#dom-colorspace-register-colorspace-colorspace"></a></dfn>);
 
   // Creates a new ColorSpace object and registers it
   <c- b>static</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace⑧"><c- n>ColorSpace</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="create(name, options)" id="dom-colorspace-create"><code><c- g>create</c-></code><a class="self-link" href="#dom-colorspace-create"></a></dfn>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②⓪"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/create(name, options)" data-dfn-type="argument" data-export id="dom-colorspace-create-name-options-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-colorspace-create-name-options-name"></a></dfn>, <a data-link-type="idl-name" href="#dictdef-colorspaceoptions" id="ref-for-dictdef-colorspaceoptions①"><c- n>ColorSpaceOptions</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/create(name, options)" data-dfn-type="argument" data-export id="dom-colorspace-create-name-options-options"><code><c- g>options</c-></code><a class="self-link" href="#dom-colorspace-create-name-options-options"></a></dfn>);
 
   // Array of names for all registered color spaces
-  <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-frozen-array" id="ref-for-idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②①"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="FrozenArray<CSSOMString>" id="dom-colorspace-names"><code><c- g>names</c-></code><a class="self-link" href="#dom-colorspace-names"></a></dfn>;
+  <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array" id="ref-for-idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②①"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="attribute" data-export data-readonly data-type="FrozenArray<CSSOMString>" id="dom-colorspace-names"><code><c- g>names</c-></code><a class="self-link" href="#dom-colorspace-names"></a></dfn>;
 
   // Lookup ColorSpace object by name
   <c- b>static</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace⑨"><c- n>ColorSpace</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="get(name)" id="dom-colorspace-get"><code><c- g>get</c-></code><a class="self-link" href="#dom-colorspace-get"></a></dfn>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②②"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①⓪"><c- n>ColorSpace</c-></a>) <dfn class="idl-code" data-dfn-for="ColorSpace/get(name)" data-dfn-type="argument" data-export id="dom-colorspace-get-name-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-colorspace-get-name-name"></a></dfn>);
 
   // Load ICC profile and create a ColorSpace object from it
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①①"><c- n>ColorSpace</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="load(url)" id="dom-colorspace-load"><code><c- g>load</c-></code><a class="self-link" href="#dom-colorspace-load"></a></dfn>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②③"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/load(url)" data-dfn-type="argument" data-export id="dom-colorspace-load-url-url"><code><c- g>url</c-></code><a class="self-link" href="#dom-colorspace-load-url-url"></a></dfn>);
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#colorspace" id="ref-for-colorspace①①"><c- n>ColorSpace</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpace" data-dfn-type="method" data-export data-lt="load(url)" id="dom-colorspace-load"><code><c- g>load</c-></code><a class="self-link" href="#dom-colorspace-load"></a></dfn>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②③"><c- n>CSSOMString</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpace/load(url)" data-dfn-type="argument" data-export id="dom-colorspace-load-url-url"><code><c- g>url</c-></code><a class="self-link" href="#dom-colorspace-load-url-url"></a></dfn>);
 };
 
 // White point x and y chromaticities
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="colorspacewhitepoint"><code><c- g>ColorSpaceWhitePoint</c-></code></dfn> {
-  <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="constructor" data-export data-lt="ColorSpaceWhitePoint(x, y)|constructor(x, y)" id="dom-colorspacewhitepoint-colorspacewhitepoint"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint/ColorSpaceWhitePoint(x, y), ColorSpaceWhitePoint/constructor(x, y)" data-dfn-type="argument" data-export id="dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint/ColorSpaceWhitePoint(x, y), ColorSpaceWhitePoint/constructor(x, y)" data-dfn-type="argument" data-export id="dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"></a></dfn>);
+  <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="constructor" data-export data-lt="ColorSpaceWhitePoint(x, y)|constructor(x, y)" id="dom-colorspacewhitepoint-colorspacewhitepoint"><code><c- g>constructor</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint"></a></dfn>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①③"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint/ColorSpaceWhitePoint(x, y), ColorSpaceWhitePoint/constructor(x, y)" data-dfn-type="argument" data-export id="dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint/ColorSpaceWhitePoint(x, y), ColorSpaceWhitePoint/constructor(x, y)" data-dfn-type="argument" data-export id="dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"></a></dfn>);
 
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑤"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-colorspacewhitepoint-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-x"></a></dfn>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑥"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-colorspacewhitepoint-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-y"></a></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑤"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-colorspacewhitepoint-x"><code><c- g>x</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-x"></a></dfn>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑥"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="double" id="dom-colorspacewhitepoint-y"><code><c- g>y</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-y"></a></dfn>;
 
   <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint①"><c- n>ColorSpaceWhitePoint</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="ColorSpaceWhitePoint" id="dom-colorspacewhitepoint-d65"><code><c- g>D65</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-d65"></a></dfn>;
   <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint②"><c- n>ColorSpaceWhitePoint</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceWhitePoint" data-dfn-type="attribute" data-export data-readonly data-type="ColorSpaceWhitePoint" id="dom-colorspacewhitepoint-d50"><code><c- g>D50</c-></code><a class="self-link" href="#dom-colorspacewhitepoint-d50"></a></dfn>;
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-colorspaceoptions"><code><c- g>ColorSpaceOptions</c-></code></dfn> {
-  (<a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint③"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object②"><c- b>object</c-></a>) <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="(ColorSpaceWhitePoint or object) " id="dom-colorspaceoptions-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspaceoptions-white"></a></dfn>;
+  (<a data-link-type="idl-name" href="#colorspacewhitepoint" id="ref-for-colorspacewhitepoint③"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object" id="ref-for-idl-object②"><c- b>object</c-></a>) <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="(ColorSpaceWhitePoint or object) " id="dom-colorspaceoptions-white"><code><c- g>white</c-></code><a class="self-link" href="#dom-colorspaceoptions-white"></a></dfn>;
 
   <a data-link-type="idl-name" href="#callbackdef-ingamutcallback" id="ref-for-callbackdef-ingamutcallback"><c- n>inGamutCallback</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="inGamutCallback " id="dom-colorspaceoptions-ingamut"><code><c- g>inGamut</c-></code><a class="self-link" href="#dom-colorspaceoptions-ingamut"></a></dfn>;
 
@@ -2383,18 +2409,18 @@ set <code>colorSpace = ColorSpace.get(colorSpace.base)</code></p>
   <a data-link-type="idl-name" href="#callbackdef-tobasecallback" id="ref-for-callbackdef-tobasecallback"><c- n>toBaseCallback</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="toBaseCallback " id="dom-colorspaceoptions-tobase"><code><c- g>toBase</c-></code><a class="self-link" href="#dom-colorspaceoptions-tobase"></a></dfn>;
   <a data-link-type="idl-name" href="#callbackdef-frombasecallback" id="ref-for-callbackdef-frombasecallback"><c- n>fromBaseCallback</c-></a> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="fromBaseCallback " id="dom-colorspaceoptions-frombase"><code><c- g>fromBase</c-></code><a class="self-link" href="#dom-colorspaceoptions-frombase"></a></dfn>;
 
-  <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②⑤"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="sequence<CSSOMString> " id="dom-colorspaceoptions-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorspaceoptions-coords"></a></dfn>; // coord names
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence③"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring" id="ref-for-cssomstring②⑤"><c- n>CSSOMString</c-></a>> <dfn class="idl-code" data-dfn-for="ColorSpaceOptions" data-dfn-type="dict-member" data-export data-type="sequence<CSSOMString> " id="dom-colorspaceoptions-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-colorspaceoptions-coords"></a></dfn>; // coord names
 };
 
-<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-ingamutcallback"><code><c- g>inGamutCallback</c-></code></dfn> = <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑦"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="inGamutCallback" data-dfn-type="argument" data-export id="dom-ingamutcallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-ingamutcallback-coords"></a></dfn>);
-<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-tobasecallback"><code><c- g>toBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑤"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑥"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double①⑨"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="toBaseCallback" data-dfn-type="argument" data-export id="dom-tobasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-tobasecallback-coords"></a></dfn>);
-<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②⓪"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence⑧"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="fromBaseCallback" data-dfn-type="argument" data-export id="dom-frombasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-frombasecallback-coords"></a></dfn>);
+<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-ingamutcallback"><code><c- g>inGamutCallback</c-></code></dfn> = <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑦"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="inGamutCallback" data-dfn-type="argument" data-export id="dom-ingamutcallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-ingamutcallback-coords"></a></dfn>);
+<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-tobasecallback"><code><c- g>toBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑤"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑧"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑥"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑨"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="toBaseCallback" data-dfn-type="argument" data-export id="dom-tobasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-tobasecallback-coords"></a></dfn>);
+<c- b>callback</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="callback" data-export id="callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></dfn> = <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑦"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②⓪"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑧"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double②①"><c- b>double</c-></a>> <dfn class="idl-code" data-dfn-for="fromBaseCallback" data-dfn-type="argument" data-export id="dom-frombasecallback-coords"><code><c- g>coords</c-></code><a class="self-link" href="#dom-frombasecallback-coords"></a></dfn>);
 
 </pre>
-   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
-   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9③"><a class="self-link" href="#issue-d41d8cd9③"></a><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9④"><a class="self-link" href="#issue-d41d8cd9④"></a><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑤"><a class="self-link" href="#issue-d41d8cd9⑤"></a><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑥"><a class="self-link" href="#issue-d41d8cd9⑥"></a><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a></div>
    <p>The <code>ColorSpaceWhitePoint</code> interface represents the xy chromaticity coordinates of
 a white point. For convenience, D50 and D65 are predefined as follows:</p>
    <ul>
@@ -2428,7 +2454,7 @@ Coordinates can be specified either as a name, or as a numerical index.</p>
 If the value is a function, it is invoked immediately,
 with the result of <code>color.get(coord)</code> being passed as the first argument.
 If the result is a number, the corresponding coordinate is set to it.</p>
-   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑦"><a class="self-link" href="#issue-d41d8cd9⑦"></a><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a></div>
    <h3 class="heading settled" data-level="3.2" id="colorspace-lookup"><span class="secno">3.2. </span><span class="content">Color space lookup</span><a class="self-link" href="#colorspace-lookup"></a></h3>
    <p>Color spaces can be looked up either by <code>ColorSpace</code> object, or by <code>name</code>.
 Implementations are expected to maintain an internal <code>Map</code> registry of color space names to objects, for fast lookups.</p>
@@ -2466,7 +2492,7 @@ If <code>A.base === B.name</code>, return <code>new Color(B, coords, color.alpha
     <li data-md>
      <p>Return <code>new Color(B, coords, color.alpha)</code></p>
    </ol>
-   <div class="issue no-marker" id="issue-d41d8cd9⑨"><a class="self-link" href="#issue-d41d8cd9⑨"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
+   <div class="issue no-marker" id="issue-d41d8cd9⑧"><a class="self-link" href="#issue-d41d8cd9⑧"></a><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a></div>
    <p class="note" role="note"><span>Note:</span> While this seems complicated in the general case, in virtually every real case
 the base chain has a length of max 3, so the algorithm would end very quickly.</p>
    <h3 class="heading settled" data-level="3.4" id="colorspace-registering"><span class="secno">3.4. </span><span class="content">Registering a color space</span><a class="self-link" href="#colorspace-registering"></a></h3>
@@ -2493,7 +2519,7 @@ Should throw if <code>name</code> exists.</p>
    <div class="example" id="example-example"><a class="self-link" href="#example-example"></a> This is an example of an informative example. </div>
    <p> Informative notes begin with the word “Note”
             and are set apart from the normative text with <code>class="note"</code>, like this: </p>
-   <p class="note" role="note"> Note, this is an informative note. </p>
+   <p class="note" role="note"> Note, this is an informative note.</p>
   </div>
 <script>
 (function() {
@@ -2627,108 +2653,109 @@ Should throw if <code>name</code> exists.</p>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#dom-deltaemethod-2000">"2000"</a><span>, in §2.1</span>
-   <li><a href="#dom-deltaemethod-76">"76"</a><span>, in §2.1</span>
+   <li><a href="#dom-deltaemethod-2000">"2000"</a><span>, in § 2.1</span>
+   <li><a href="#dom-deltaemethod-76">"76"</a><span>, in § 2.1</span>
    <li>
     alpha
     <ul>
-     <li><a href="#dom-color-alpha">attribute for Color</a><span>, in §2.1</span>
-     <li><a href="#dom-colorjson-alpha">dict-member for ColorJSON</a><span>, in §2.1</span>
+     <li><a href="#dom-color-alpha">attribute for Color</a><span>, in § 2.1</span>
+     <li><a href="#dom-colorjson-alpha">dict-member for ColorJSON</a><span>, in § 2.1</span>
     </ul>
    <li>
     base
     <ul>
-     <li><a href="#dom-colorspace-base">attribute for ColorSpace</a><span>, in §2.2</span>
-     <li><a href="#dom-colorspaceoptions-base">dict-member for ColorSpaceOptions</a><span>, in §2.2</span>
+     <li><a href="#dom-colorspace-base">attribute for ColorSpace</a><span>, in § 2.2</span>
+     <li><a href="#dom-colorspaceoptions-base">dict-member for ColorSpaceOptions</a><span>, in § 2.2</span>
     </ul>
-   <li><a href="#color">Color</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color-color">Color(color)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color">Color(colorSpace, coords)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color">Color(colorSpace, coords, alpha)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color-csstext">Color(cssText)</a><span>, in §2.1</span>
-   <li><a href="#dictdef-colorjson">ColorJSON</a><span>, in §2.1</span>
-   <li><a href="#colorspace">ColorSpace</a><span>, in §2.2</span>
+   <li><a href="#color">Color</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color-color">Color(color)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color">Color(colorSpace, coords)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color">Color(colorSpace, coords, alpha)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color-csstext">Color(cssText)</a><span>, in § 2.1</span>
+   <li><a href="#dictdef-colorjson">ColorJSON</a><span>, in § 2.1</span>
+   <li><a href="#colorspace">ColorSpace</a><span>, in § 2.2</span>
    <li>
     colorSpace
     <ul>
-     <li><a href="#dom-color-colorspace">attribute for Color</a><span>, in §2.1</span>
-     <li><a href="#dom-colorjson-colorspace">dict-member for ColorJSON</a><span>, in §2.1</span>
-     <li><a href="#dom-coordreference-colorspace">dict-member for coordReference</a><span>, in §2.1</span>
+     <li><a href="#dom-color-colorspace">attribute for Color</a><span>, in § 2.1</span>
+     <li><a href="#dom-colorjson-colorspace">dict-member for ColorJSON</a><span>, in § 2.1</span>
+     <li><a href="#dom-coordreference-colorspace">dict-member for coordReference</a><span>, in § 2.1</span>
     </ul>
-   <li><a href="#dom-colorspace-colorspace">ColorSpace(name, options)</a><span>, in §2.2</span>
-   <li><a href="#dictdef-colorspaceoptions">ColorSpaceOptions</a><span>, in §2.2</span>
-   <li><a href="#colorspacewhitepoint">ColorSpaceWhitePoint</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspacewhitepoint-colorspacewhitepoint">ColorSpaceWhitePoint(x, y)</a><span>, in §2.2</span>
-   <li><a href="#dom-color-color-color">constructor(color)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color">constructor(colorSpace, coords)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color">constructor(colorSpace, coords, alpha)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-color-csstext">constructor(cssText)</a><span>, in §2.1</span>
-   <li><a href="#dom-colorspace-colorspace">constructor(name, options)</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspacewhitepoint-colorspacewhitepoint">constructor(x, y)</a><span>, in §2.2</span>
-   <li><a href="#dictdef-coordreference">coordReference</a><span>, in §2.1</span>
+   <li><a href="#dom-colorspace-colorspace">ColorSpace(name, options)</a><span>, in § 2.2</span>
+   <li><a href="#dictdef-colorspaceoptions">ColorSpaceOptions</a><span>, in § 2.2</span>
+   <li><a href="#colorspacewhitepoint">ColorSpaceWhitePoint</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-colorspacewhitepoint">ColorSpaceWhitePoint(x, y)</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-color-color">constructor(color)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color">constructor(colorSpace, coords)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color">constructor(colorSpace, coords, alpha)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-color-csstext">constructor(cssText)</a><span>, in § 2.1</span>
+   <li><a href="#dom-colorspace-colorspace">constructor(name, options)</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-colorspacewhitepoint">constructor(x, y)</a><span>, in § 2.2</span>
+   <li><a href="#dictdef-coordreference">coordReference</a><span>, in § 2.1</span>
    <li>
     coords
     <ul>
-     <li><a href="#dom-color-coords">attribute for Color</a><span>, in §2.1</span>
-     <li><a href="#dom-colorspace-coords">attribute for ColorSpace</a><span>, in §2.2</span>
-     <li><a href="#dom-colorjson-coords">dict-member for ColorJSON</a><span>, in §2.1</span>
-     <li><a href="#dom-colorspaceoptions-coords">dict-member for ColorSpaceOptions</a><span>, in §2.2</span>
+     <li><a href="#dom-color-coords">attribute for Color</a><span>, in § 2.1</span>
+     <li><a href="#dom-colorspace-coords">attribute for ColorSpace</a><span>, in § 2.2</span>
+     <li><a href="#dom-colorjson-coords">dict-member for ColorJSON</a><span>, in § 2.1</span>
+     <li><a href="#dom-colorspaceoptions-coords">dict-member for ColorSpaceOptions</a><span>, in § 2.2</span>
     </ul>
-   <li><a href="#dom-colorspace-create">create(name, options)</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspacewhitepoint-d50">D50</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspacewhitepoint-d65">D65</a><span>, in §2.2</span>
-   <li><a href="#dom-color-deltae">deltaE(color)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-deltae">deltaE(color, method)</a><span>, in §2.1</span>
-   <li><a href="#enumdef-deltaemethod">DeltaEMethod</a><span>, in §2.1</span>
-   <li><a href="#dom-colorspaceoptions-frombase">fromBase</a><span>, in §2.2</span>
-   <li><a href="#callbackdef-frombasecallback">fromBaseCallback</a><span>, in §2.2</span>
-   <li><a href="#dom-color-get">get(colorSpace, coord)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-get-coord">get(coord)</a><span>, in §2.1</span>
+   <li><a href="#dom-colorspace-create">create(name, options)</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-d50">D50</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-d65">D65</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-deltae">deltaE(color)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-deltae-color-deltaemethod">deltaE(color, deltaEMethod)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-deltae">deltaE(color, method)</a><span>, in § 2.1</span>
+   <li><a href="#enumdef-deltaemethod">DeltaEMethod</a><span>, in § 2.1</span>
+   <li><a href="#dom-colorspaceoptions-frombase">fromBase</a><span>, in § 2.2</span>
+   <li><a href="#callbackdef-frombasecallback">fromBaseCallback</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-get">get(colorSpace, coord)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-get-coord">get(coord)</a><span>, in § 2.1</span>
    <li>
     get(name)
     <ul>
-     <li><a href="#dom-color-get-name">method for Color</a><span>, in §2.2</span>
-     <li><a href="#dom-colorspace-get">method for ColorSpace</a><span>, in §2.2</span>
+     <li><a href="#dom-color-get-name">method for Color</a><span>, in § 2.2</span>
+     <li><a href="#dom-colorspace-get">method for ColorSpace</a><span>, in § 2.2</span>
     </ul>
-   <li><a href="#dom-colorspace-iccprofile">iccProfile</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspaceoptions-ingamut">inGamut</a><span>, in §2.2</span>
-   <li><a href="#dom-color-ingamut">inGamut()</a><span>, in §2.1</span>
-   <li><a href="#callbackdef-ingamutcallback">inGamutCallback</a><span>, in §2.2</span>
-   <li><a href="#dom-color-ingamut">inGamut(colorSpace)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-ingamut">inGamut(colorspace)</a><span>, in §2.1</span>
-   <li><a href="#dom-colorspace-load">load(url)</a><span>, in §2.2</span>
-   <li><a href="#dom-togamutoptions-method">method</a><span>, in §2.1</span>
+   <li><a href="#dom-colorspace-iccprofile">iccProfile</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspaceoptions-ingamut">inGamut</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-ingamut">inGamut()</a><span>, in § 2.1</span>
+   <li><a href="#callbackdef-ingamutcallback">inGamutCallback</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-ingamut">inGamut(colorSpace)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-ingamut">inGamut(colorspace)</a><span>, in § 2.1</span>
+   <li><a href="#dom-colorspace-load">load(url)</a><span>, in § 2.2</span>
+   <li><a href="#dom-togamutoptions-method">method</a><span>, in § 2.1</span>
    <li>
     name
     <ul>
-     <li><a href="#dom-colorspace-name">attribute for ColorSpace</a><span>, in §2.2</span>
-     <li><a href="#dom-coordreference-name">dict-member for coordReference</a><span>, in §2.1</span>
+     <li><a href="#dom-colorspace-name">attribute for ColorSpace</a><span>, in § 2.2</span>
+     <li><a href="#dom-coordreference-name">dict-member for coordReference</a><span>, in § 2.1</span>
     </ul>
-   <li><a href="#dom-colorspace-names">names</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspace-register">register(colorspace)</a><span>, in §2.2</span>
-   <li><a href="#callbackdef-relativecoordcallback">relativeCoordCallback</a><span>, in §2.1</span>
-   <li><a href="#dom-color-set">set(colorSpace, coord, value)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-set-colorspace-values">set(colorSpace, values)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-set-coord-value">set(coord, value)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-set-values">set(values)</a><span>, in §2.1</span>
-   <li><a href="#Color-stringification-behavior">stringification behavior</a><span>, in §2.1</span>
-   <li><a href="#dom-colorspaceoptions-tobase">toBase</a><span>, in §2.2</span>
-   <li><a href="#callbackdef-tobasecallback">toBaseCallback</a><span>, in §2.2</span>
-   <li><a href="#dom-color-to-colorspace">to(colorSpace)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-to">to(colorspace)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-togamut">toGamut()</a><span>, in §2.1</span>
-   <li><a href="#dom-color-togamut">toGamut(colorSpace)</a><span>, in §2.1</span>
-   <li><a href="#dom-color-togamut">toGamut(colorSpace, options)</a><span>, in §2.1</span>
-   <li><a href="#dictdef-togamutoptions">ToGamutOptions</a><span>, in §2.1</span>
-   <li><a href="#dom-color-tojson">toJSON()</a><span>, in §2.1</span>
+   <li><a href="#dom-colorspace-names">names</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspace-register">register(colorspace)</a><span>, in § 2.2</span>
+   <li><a href="#callbackdef-relativecoordcallback">relativeCoordCallback</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-set">set(colorSpace, coord, value)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-set-colorspace-values">set(colorSpace, values)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-set-coord-value">set(coord, value)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-set-values">set(values)</a><span>, in § 2.1</span>
+   <li><a href="#Color-stringification-behavior">stringification behavior</a><span>, in § 2.1</span>
+   <li><a href="#dom-colorspaceoptions-tobase">toBase</a><span>, in § 2.2</span>
+   <li><a href="#callbackdef-tobasecallback">toBaseCallback</a><span>, in § 2.2</span>
+   <li><a href="#dom-color-to-colorspace">to(colorSpace)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-to">to(colorspace)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-togamut">toGamut()</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-togamut">toGamut(colorSpace)</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-togamut">toGamut(colorSpace, options)</a><span>, in § 2.1</span>
+   <li><a href="#dictdef-togamutoptions">ToGamutOptions</a><span>, in § 2.1</span>
+   <li><a href="#dom-color-tojson">toJSON()</a><span>, in § 2.1</span>
    <li>
     white
     <ul>
-     <li><a href="#dom-colorspace-white">attribute for ColorSpace</a><span>, in §2.2</span>
-     <li><a href="#dom-colorspaceoptions-white">dict-member for ColorSpaceOptions</a><span>, in §2.2</span>
+     <li><a href="#dom-colorspace-white">attribute for ColorSpace</a><span>, in § 2.2</span>
+     <li><a href="#dom-colorspaceoptions-white">dict-member for ColorSpaceOptions</a><span>, in § 2.2</span>
     </ul>
-   <li><a href="#dom-colorspacewhitepoint-x">x</a><span>, in §2.2</span>
-   <li><a href="#dom-colorspacewhitepoint-y">y</a><span>, in §2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-x">x</a><span>, in § 2.2</span>
+   <li><a href="#dom-colorspacewhitepoint-y">y</a><span>, in § 2.2</span>
   </ul>
   <aside class="dfn-panel" data-for="term-for-csscolorvalue">
    <a href="https://drafts.css-houdini.org/css-typed-om-1/#csscolorvalue">https://drafts.css-houdini.org/css-typed-om-1/#csscolorvalue</a><b>Referenced in:</b>
@@ -2744,66 +2771,66 @@ Should throw if <code>name</code> exists.</p>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-Exposed">
-   <a href="https://heycam.github.io/webidl/#Exposed">https://heycam.github.io/webidl/#Exposed</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#Exposed">https://webidl.spec.whatwg.org/#Exposed</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-Exposed">2.1. Color objects</a>
     <li><a href="#ref-for-Exposed①">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-frozen-array">
-   <a href="https://heycam.github.io/webidl/#idl-frozen-array">https://heycam.github.io/webidl/#idl-frozen-array</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-frozen-array">https://webidl.spec.whatwg.org/#idl-frozen-array</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-frozen-array">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-observable-array">
-   <a href="https://heycam.github.io/webidl/#idl-observable-array">https://heycam.github.io/webidl/#idl-observable-array</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-observable-array">https://webidl.spec.whatwg.org/#idl-observable-array</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-observable-array">2.1. Color objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-promise">
-   <a href="https://heycam.github.io/webidl/#idl-promise">https://heycam.github.io/webidl/#idl-promise</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-promise">https://webidl.spec.whatwg.org/#idl-promise</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-promise">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
-   <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-boolean">https://webidl.spec.whatwg.org/#idl-boolean</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-boolean">2.1. Color objects</a>
     <li><a href="#ref-for-idl-boolean①">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-double">
-   <a href="https://heycam.github.io/webidl/#idl-double">https://heycam.github.io/webidl/#idl-double</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-double">https://webidl.spec.whatwg.org/#idl-double</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-double">2.1. Color objects</a> <a href="#ref-for-idl-double①">(2)</a> <a href="#ref-for-idl-double②">(3)</a> <a href="#ref-for-idl-double③">(4)</a> <a href="#ref-for-idl-double④">(5)</a> <a href="#ref-for-idl-double⑤">(6)</a> <a href="#ref-for-idl-double⑥">(7)</a> <a href="#ref-for-idl-double⑦">(8)</a> <a href="#ref-for-idl-double⑧">(9)</a> <a href="#ref-for-idl-double⑨">(10)</a> <a href="#ref-for-idl-double①⓪">(11)</a> <a href="#ref-for-idl-double①①">(12)</a> <a href="#ref-for-idl-double①②">(13)</a>
     <li><a href="#ref-for-idl-double①③">2.2. ColorSpace objects</a> <a href="#ref-for-idl-double①④">(2)</a> <a href="#ref-for-idl-double①⑤">(3)</a> <a href="#ref-for-idl-double①⑥">(4)</a> <a href="#ref-for-idl-double①⑦">(5)</a> <a href="#ref-for-idl-double①⑧">(6)</a> <a href="#ref-for-idl-double①⑨">(7)</a> <a href="#ref-for-idl-double②⓪">(8)</a> <a href="#ref-for-idl-double②①">(9)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-object">
-   <a href="https://heycam.github.io/webidl/#idl-object">https://heycam.github.io/webidl/#idl-object</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-object">https://webidl.spec.whatwg.org/#idl-object</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-object">2.1. Color objects</a> <a href="#ref-for-idl-object①">(2)</a>
     <li><a href="#ref-for-idl-object②">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-sequence">
-   <a href="https://heycam.github.io/webidl/#idl-sequence">https://heycam.github.io/webidl/#idl-sequence</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-sequence">https://webidl.spec.whatwg.org/#idl-sequence</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-sequence">2.1. Color objects</a> <a href="#ref-for-idl-sequence①">(2)</a>
     <li><a href="#ref-for-idl-sequence②">2.2. ColorSpace objects</a> <a href="#ref-for-idl-sequence③">(2)</a> <a href="#ref-for-idl-sequence④">(3)</a> <a href="#ref-for-idl-sequence⑤">(4)</a> <a href="#ref-for-idl-sequence⑥">(5)</a> <a href="#ref-for-idl-sequence⑦">(6)</a> <a href="#ref-for-idl-sequence⑧">(7)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-undefined">
-   <a href="https://heycam.github.io/webidl/#idl-undefined">https://heycam.github.io/webidl/#idl-undefined</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-undefined">https://webidl.spec.whatwg.org/#idl-undefined</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-undefined">2.2. ColorSpace objects</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-unsigned-short">
-   <a href="https://heycam.github.io/webidl/#idl-unsigned-short">https://heycam.github.io/webidl/#idl-unsigned-short</a><b>Referenced in:</b>
+   <a href="https://webidl.spec.whatwg.org/#idl-unsigned-short">https://webidl.spec.whatwg.org/#idl-unsigned-short</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-unsigned-short">2.1. Color objects</a> <a href="#ref-for-idl-unsigned-short①">(2)</a> <a href="#ref-for-idl-unsigned-short②">(3)</a> <a href="#ref-for-idl-unsigned-short③">(4)</a>
    </ul>
@@ -2811,17 +2838,17 @@ Should throw if <code>name</code> exists.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
-    <a data-link-type="biblio">[css-typed-om-1]</a> defines the following terms:
+    <a data-link-type="biblio">[CSS-TYPED-OM-1]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-csscolorvalue">CSSColorValue</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[cssom-1]</a> defines the following terms:
+    <a data-link-type="biblio">[CSSOM-1]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-cssomstring">CSSOMString</span>
     </ul>
    <li>
-    <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
+    <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-Exposed">Exposed</span>
      <li><span class="dfn-paneled" id="term-for-idl-frozen-array">FrozenArray</span>
@@ -2839,22 +2866,22 @@ Should throw if <code>name</code> exists.</p>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-css-typed-om-1">[CSS-TYPED-OM-1]
-   <dd>Shane Stephens; Tab Atkins Jr.; Naina Raisinghani. <a href="https://www.w3.org/TR/css-typed-om-1/">CSS Typed OM Level 1</a>. 10 April 2018. WD. URL: <a href="https://www.w3.org/TR/css-typed-om-1/">https://www.w3.org/TR/css-typed-om-1/</a>
+   <dd>Shane Stephens; Tab Atkins Jr.; Naina Raisinghani. <a href="https://drafts.css-houdini.org/css-typed-om-1/"><cite>CSS Typed OM Level 1</cite></a>. URL: <a href="https://drafts.css-houdini.org/css-typed-om-1/">https://drafts.css-houdini.org/css-typed-om-1/</a>
    <dt id="biblio-cssom-1">[CSSOM-1]
-   <dd>Simon Pieters; Glenn Adams. <a href="https://www.w3.org/TR/cssom-1/">CSS Object Model (CSSOM)</a>. 17 March 2016. WD. URL: <a href="https://www.w3.org/TR/cssom-1/">https://www.w3.org/TR/cssom-1/</a>
+   <dd>Daniel Glazman; Emilio Cobos Álvarez. <a href="https://drafts.csswg.org/cssom/"><cite>CSS Object Model (CSSOM)</cite></a>. URL: <a href="https://drafts.csswg.org/cssom/">https://drafts.csswg.org/cssom/</a>
    <dt id="biblio-rfc2119">[RFC2119]
-   <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
-   <dt id="biblio-webidl">[WebIDL]
-   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
+   <dt id="biblio-webidl">[WEBIDL]
+   <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
 <c- b>interface</c-> <a href="#color"><code><c- g>Color</c-></code></a> {
   // Default constructor
   <a href="#dom-color-color"><code><c- g>constructor</c-></code></a>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-color-colorspace-coords-alpha-colorspace"><code><c- g>colorSpace</c-></code></a>,
-    <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a href="#dom-color-color-colorspace-coords-alpha-coords"><code><c- g>coords</c-></code></a>,
-    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-color-color-colorspace-coords-alpha-alpha"><code><c- g>alpha</c-></code></a> = 1
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a href="#dom-color-color-colorspace-coords-alpha-coords"><code><c- g>coords</c-></code></a>,
+    <c- b>optional</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-color-color-colorspace-coords-alpha-alpha"><code><c- g>alpha</c-></code></a> = 1
   );
 
   // Parse CSS color
@@ -2864,30 +2891,30 @@ Should throw if <code>name</code> exists.</p>
   <a href="#dom-color-color-color"><code><c- g>constructor</c-></code></a>((<a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="https://drafts.css-houdini.org/css-typed-om-1/#csscolorvalue"><c- n>CSSColorValue</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#dictdef-colorjson"><c- n>ColorJSON</c-></a>) <a href="#dom-color-color-color-color"><code><c- g>color</c-></code></a>);
 
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a data-type="CSSOMString" href="#dom-color-colorspace"><code><c- g>colorSpace</c-></code></a>;
-  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-observable-array"><c- b>ObservableArray</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a data-type="ObservableArray<double>" href="#dom-color-coords"><code><c- g>coords</c-></code></a>;
-  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-type="double" href="#dom-color-alpha"><code><c- g>alpha</c-></code></a>;
+  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-observable-array"><c- b>ObservableArray</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a data-type="ObservableArray<double>" href="#dom-color-coords"><code><c- g>coords</c-></code></a>;
+  <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a data-type="double" href="#dom-color-alpha"><code><c- g>alpha</c-></code></a>;
 
   // Get/set coordinates (in this or other color spaces)
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-color-get"><code><c- g>get</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code></a>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code></a>);
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-color-get"><code><c- g>get</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-get-colorspace-coord-colorspace"><code><c- g>colorSpace</c-></code></a>, (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-colorspace-coord-coord"><code><c- g>coord</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-get-coord"><c- g>get</c-></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-get-coord-coord"><code><c- g>coord</c-></code></a>);
 
   <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set"><code><c- g>set</c-></code></a>(
     (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-set-colorspace-coord-value-colorspace"><code><c- g>colorSpace</c-></code></a>,
-    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-set-colorspace-coord-value-coord"><code><c- g>coord</c-></code></a>,
-    (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <a href="#dom-color-set-colorspace-coord-value-value"><code><c- g>value</c-></code></a>
+    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-set-colorspace-coord-value-coord"><code><c- g>coord</c-></code></a>,
+    (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <a href="#dom-color-set-colorspace-coord-value-value"><code><c- g>value</c-></code></a>
   );
   <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set-coord-value"><code><c- g>set</c-></code></a>(
-    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-set-coord-value-coord"><code><c- g>coord</c-></code></a>,
-    (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <a href="#dom-color-set-coord-value-value"><code><c- g>value</c-></code></a>
+    (<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a>) <a href="#dom-color-set-coord-value-coord"><code><c- g>coord</c-></code></a>,
+    (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#callbackdef-relativecoordcallback"><c- n>relativeCoordCallback</c-></a>) <a href="#dom-color-set-coord-value-value"><code><c- g>value</c-></code></a>
   );
-  <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set-colorspace-values"><code><c- g>set</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-set-colorspace-values-colorspace"><code><c- g>colorSpace</c-></code></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a> <a href="#dom-color-set-colorspace-values-values"><code><c- g>values</c-></code></a>);
-  <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set-values"><code><c- g>set</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a> <a href="#dom-color-set-values-values"><code><c- g>values</c-></code></a>);
+  <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set-colorspace-values"><code><c- g>set</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-color-set-colorspace-values-colorspace"><code><c- g>colorSpace</c-></code></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object"><c- b>object</c-></a> <a href="#dom-color-set-colorspace-values-values"><code><c- g>values</c-></code></a>);
+  <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-set-values"><code><c- g>set</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object"><c- b>object</c-></a> <a href="#dom-color-set-values-values"><code><c- g>values</c-></code></a>);
 
   // Convert to another color space
   <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-to"><code><c- g>to</c-></code></a>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-color-to-colorspace-colorspace"><code><c- g>colorspace</c-></code></a>);
 
   // Check whether a color is in gamut of a given color space
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-ingamut"><c- g>inGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-color-ingamut-colorspace-colorspace"><code><c- g>colorspace</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-ingamut"><c- g>inGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-color-ingamut-colorspace-colorspace"><code><c- g>colorspace</c-></code></a>);
 
   // Bring a color into gamut of a given colorspace
   <a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a class="idl-code" data-link-type="method" href="#dom-color-togamut"><c- g>toGamut</c-></a>(<c- b>optional</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-color-togamut-colorspace-options-colorspace"><code><c- g>colorSpace</c-></code></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#dictdef-togamutoptions"><c- n>ToGamutOptions</c-></a> <a href="#dom-color-togamut-colorspace-options-options"><code><c- g>options</c-></code></a>);
@@ -2897,7 +2924,7 @@ Should throw if <code>name</code> exists.</p>
   <a data-link-type="idl-name" href="#dictdef-colorjson"><c- n>ColorJSON</c-></a> <a href="#dom-color-tojson"><code><c- g>toJSON</c-></code></a>();
 
   // Color difference
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-color-deltae"><code><c- g>deltaE</c-></code></a>(<a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-deltae-color-method-color"><code><c- g>color</c-></code></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#enumdef-deltaemethod"><c- n>DeltaEMethod</c-></a> <a href="#dom-color-deltae-color-method-method"><code><c- g>method</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-color-deltae"><code><c- g>deltaE</c-></code></a>(<a data-link-type="idl-name" href="#color"><c- n>Color</c-></a> <a href="#dom-color-deltae-color-method-color"><code><c- g>color</c-></code></a>, <c- b>optional</c-> <a data-link-type="idl-name" href="#enumdef-deltaemethod"><c- n>DeltaEMethod</c-></a> <a href="#dom-color-deltae-color-method-method"><code><c- g>method</c-></code></a>);
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-togamutoptions"><code><c- g>ToGamutOptions</c-></code></a> {
@@ -2919,51 +2946,51 @@ Should throw if <code>name</code> exists.</p>
 
 <c- b>dictionary</c-> <a href="#dictdef-colorjson"><code><c- g>ColorJSON</c-></code></a> {
   <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a data-type="CSSOMString " href="#dom-colorjson-colorspace"><code><c- g>colorSpace</c-></code></a>;
-  <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a data-type="sequence<double> " href="#dom-colorjson-coords"><code><c- g>coords</c-></code></a>;
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-type="double " href="#dom-colorjson-alpha"><code><c- g>alpha</c-></code></a>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a data-type="sequence<double> " href="#dom-colorjson-coords"><code><c- g>coords</c-></code></a>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a data-type="double " href="#dom-colorjson-alpha"><code><c- g>alpha</c-></code></a>;
 };
 
-<c- b>callback</c-> <a href="#callbackdef-relativecoordcallback"><code><c- g>relativeCoordCallback</c-></code></a> = <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> (<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-relativecoordcallback-coord"><code><c- g>coord</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-relativecoordcallback"><code><c- g>relativeCoordCallback</c-></code></a> = <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> (<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-relativecoordcallback-coord"><code><c- g>coord</c-></code></a>);
 
-[<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
+[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->, <c- n>PaintWorklet</c->, <c- n>LayoutWorklet</c->)]
 <c- b>interface</c-> <a href="#colorspace"><code><c- g>ColorSpace</c-></code></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a data-readonly data-type="CSSOMString" href="#dom-colorspace-name"><code><c- g>name</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>? <a data-readonly data-type="CSSOMString?" href="#dom-colorspace-iccprofile"><code><c- g>iccProfile</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <a data-readonly data-type="ColorSpaceWhitePoint" href="#dom-colorspace-white"><code><c- g>white</c-></code></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>? <a data-readonly data-type="ColorSpace?" href="#dom-colorspace-base"><code><c- g>base</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-readonly data-type="sequence<CSSOMString>" href="#dom-colorspace-coords"><code><c- g>coords</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-readonly data-type="sequence<CSSOMString>" href="#dom-colorspace-coords"><code><c- g>coords</c-></code></a>;
 
   <a href="#dom-colorspace-colorspace"><code><c- g>constructor</c-></code></a>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-colorspace-colorspace-name-options-name"><code><c- g>name</c-></code></a>, <a data-link-type="idl-name" href="#dictdef-colorspaceoptions"><c- n>ColorSpaceOptions</c-></a> <a href="#dom-colorspace-colorspace-name-options-options"><code><c- g>options</c-></code></a>);
 
   // Register a ColorSpace object
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-undefined"><c- b>undefined</c-></a> <a href="#dom-colorspace-register"><code><c- g>register</c-></code></a>(<a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a> <a href="#dom-colorspace-register-colorspace-colorspace"><code><c- g>colorspace</c-></code></a>);
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a> <a href="#dom-colorspace-register"><code><c- g>register</c-></code></a>(<a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a> <a href="#dom-colorspace-register-colorspace-colorspace"><code><c- g>colorspace</c-></code></a>);
 
   // Creates a new ColorSpace object and registers it
   <c- b>static</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a> <a href="#dom-colorspace-create"><code><c- g>create</c-></code></a>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-colorspace-create-name-options-name"><code><c- g>name</c-></code></a>, <a data-link-type="idl-name" href="#dictdef-colorspaceoptions"><c- n>ColorSpaceOptions</c-></a> <a href="#dom-colorspace-create-name-options-options"><code><c- g>options</c-></code></a>);
 
   // Array of names for all registered color spaces
-  <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-readonly data-type="FrozenArray<CSSOMString>" href="#dom-colorspace-names"><code><c- g>names</c-></code></a>;
+  <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-frozen-array"><c- b>FrozenArray</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-readonly data-type="FrozenArray<CSSOMString>" href="#dom-colorspace-names"><code><c- g>names</c-></code></a>;
 
   // Lookup ColorSpace object by name
   <c- b>static</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a> <a href="#dom-colorspace-get"><code><c- g>get</c-></code></a>((<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>) <a href="#dom-colorspace-get-name-name"><code><c- g>name</c-></code></a>);
 
   // Load ICC profile and create a ColorSpace object from it
-  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>> <a href="#dom-colorspace-load"><code><c- g>load</c-></code></a>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-colorspace-load-url-url"><code><c- g>url</c-></code></a>);
+  <c- b>static</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#colorspace"><c- n>ColorSpace</c-></a>> <a href="#dom-colorspace-load"><code><c- g>load</c-></code></a>(<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a> <a href="#dom-colorspace-load-url-url"><code><c- g>url</c-></code></a>);
 };
 
 // White point x and y chromaticities
 <c- b>interface</c-> <a href="#colorspacewhitepoint"><code><c- g>ColorSpaceWhitePoint</c-></code></a> {
-  <a href="#dom-colorspacewhitepoint-colorspacewhitepoint"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"><code><c- g>x</c-></code></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"><code><c- g>y</c-></code></a>);
+  <a href="#dom-colorspacewhitepoint-colorspacewhitepoint"><code><c- g>constructor</c-></code></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-x"><code><c- g>x</c-></code></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a href="#dom-colorspacewhitepoint-colorspacewhitepoint-x-y-y"><code><c- g>y</c-></code></a>);
 
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-colorspacewhitepoint-x"><code><c- g>x</c-></code></a>;
-  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-colorspacewhitepoint-y"><code><c- g>y</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-colorspacewhitepoint-x"><code><c- g>x</c-></code></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a> <a data-readonly data-type="double" href="#dom-colorspacewhitepoint-y"><code><c- g>y</c-></code></a>;
 
   <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <a data-readonly data-type="ColorSpaceWhitePoint" href="#dom-colorspacewhitepoint-d65"><code><c- g>D65</c-></code></a>;
   <c- b>static</c-> <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <a data-readonly data-type="ColorSpaceWhitePoint" href="#dom-colorspacewhitepoint-d50"><code><c- g>D50</c-></code></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-colorspaceoptions"><code><c- g>ColorSpaceOptions</c-></code></a> {
-  (<a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a>) <a data-type="(ColorSpaceWhitePoint or object) " href="#dom-colorspaceoptions-white"><code><c- g>white</c-></code></a>;
+  (<a data-link-type="idl-name" href="#colorspacewhitepoint"><c- n>ColorSpaceWhitePoint</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-object"><c- b>object</c-></a>) <a data-type="(ColorSpaceWhitePoint or object) " href="#dom-colorspaceoptions-white"><code><c- g>white</c-></code></a>;
 
   <a data-link-type="idl-name" href="#callbackdef-ingamutcallback"><c- n>inGamutCallback</c-></a> <a data-type="inGamutCallback " href="#dom-colorspaceoptions-ingamut"><code><c- g>inGamut</c-></code></a>;
 
@@ -2972,27 +2999,27 @@ Should throw if <code>name</code> exists.</p>
   <a data-link-type="idl-name" href="#callbackdef-tobasecallback"><c- n>toBaseCallback</c-></a> <a data-type="toBaseCallback " href="#dom-colorspaceoptions-tobase"><code><c- g>toBase</c-></code></a>;
   <a data-link-type="idl-name" href="#callbackdef-frombasecallback"><c- n>fromBaseCallback</c-></a> <a data-type="fromBaseCallback " href="#dom-colorspaceoptions-frombase"><code><c- g>fromBase</c-></code></a>;
 
-  <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-type="sequence<CSSOMString> " href="#dom-colorspaceoptions-coords"><code><c- g>coords</c-></code></a>; // coord names
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="https://drafts.csswg.org/cssom-1/#cssomstring"><c- n>CSSOMString</c-></a>> <a data-type="sequence<CSSOMString> " href="#dom-colorspaceoptions-coords"><code><c- g>coords</c-></code></a>; // coord names
 };
 
-<c- b>callback</c-> <a href="#callbackdef-ingamutcallback"><code><c- g>inGamutCallback</c-></code></a> = <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><c- b>boolean</c-></a> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a href="#dom-ingamutcallback-coords"><code><c- g>coords</c-></code></a>);
-<c- b>callback</c-> <a href="#callbackdef-tobasecallback"><code><c- g>toBaseCallback</c-></code></a> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a href="#dom-tobasecallback-coords"><code><c- g>coords</c-></code></a>);
-<c- b>callback</c-> <a href="#callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></a> = <a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><c- b>double</c-></a>> <a href="#dom-frombasecallback-coords"><code><c- g>coords</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-ingamutcallback"><code><c- g>inGamutCallback</c-></code></a> = <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean"><c- b>boolean</c-></a> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a href="#dom-ingamutcallback-coords"><code><c- g>coords</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-tobasecallback"><code><c- g>toBaseCallback</c-></code></a> = <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a href="#dom-tobasecallback-coords"><code><c- g>coords</c-></code></a>);
+<c- b>callback</c-> <a href="#callbackdef-frombasecallback"><code><c- g>fromBaseCallback</c-></code></a> = <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> (<a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double"><c- b>double</c-></a>> <a href="#dom-frombasecallback-coords"><code><c- g>coords</c-></code></a>);
 
 
 </pre>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a><a href="#issue-d41d8cd9"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a><a href="#issue-d41d8cd9①"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9②"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a><a href="#issue-d41d8cd9③"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a><a href="#issue-d41d8cd9④"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a><a href="#issue-d41d8cd9⑤"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a><a href="#issue-d41d8cd9⑥"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a><a href="#issue-d41d8cd9⑦"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a><a href="#issue-d41d8cd9⑧"> ↵ </a></div>
-   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a><a href="#issue-d41d8cd9⑨"> ↵ </a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/1" style="text-transform:none">wicg/color-api/1</a><a href="https://github.com/wicg/color-api/issues/1">Expand introduction</a> <a class="issue-return" href="#issue-d41d8cd9" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/3" style="text-transform:none">wicg/color-api/3</a><a href="https://github.com/wicg/color-api/issues/3">Describe the other constructor signatures</a> <a class="issue-return" href="#issue-d41d8cd9①" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-de9ad1c3" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/5" style="text-transform:none">wicg/color-api/5</a><a href="https://github.com/wicg/color-api/issues/5">`toGamut()` in place?</a> <a class="issue-return" href="#issue-d41d8cd9②" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/4" style="text-transform:none">wicg/color-api/4</a><a href="https://github.com/wicg/color-api/issues/4">Coord ranges?</a> <a class="issue-return" href="#issue-d41d8cd9③" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/6" style="text-transform:none">wicg/color-api/6</a><a href="https://github.com/wicg/color-api/issues/6">How to declare which color space coordinates are angles?</a> <a class="issue-return" href="#issue-d41d8cd9④" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/7" style="text-transform:none">wicg/color-api/7</a><a href="https://github.com/wicg/color-api/issues/7">Matrix-based extensibility</a> <a class="issue-return" href="#issue-d41d8cd9⑤" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/20" style="text-transform:none">wicg/color-api/20</a><a href="https://github.com/wicg/color-api/issues/20">What to do with coordinate names when loading a ColorSpace from an ICC profile?</a> <a class="issue-return" href="#issue-d41d8cd9⑥" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/8" style="text-transform:none">wicg/color-api/8</a><a href="https://github.com/wicg/color-api/issues/8">Promises</a> <a class="issue-return" href="#issue-d41d8cd9⑦" title="Jump to section">↵</a></div>
+   <div class="issue no-marker"><a class="marker" href="https://github.com/wicg/color-api/issues/11" style="text-transform:none">wicg/color-api/11</a><a href="https://github.com/wicg/color-api/issues/11">Clarify later steps of colorspace conversion</a> <a class="issue-return" href="#issue-d41d8cd9⑧" title="Jump to section">↵</a></div>
   </div>
   <aside class="dfn-panel" data-for="color">
    <b><a href="#color">#color</a></b><b>Referenced in:</b>
