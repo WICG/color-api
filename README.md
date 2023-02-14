@@ -1,19 +1,14 @@
 # A native Color object for the Web Platform ([Slides](https://docs.google.com/presentation/d/1Pkcxwdej2nWqYr0F6dYHpxcMaUMb11w_YmbZmcUV6Gc/edit?usp=sharing))
 
-## Why?
+## Use cases and motivation
 
-Many of Web Platform APIs need a WCG, HDR Color object:
-
-- Canvas API (see [Canvas High Dynamic Range](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md))
-- CSS OM
-- SVG DOM
-- HTML `<input type="color">` or its successor (see [Open UI](https://github.com/openui/open-ui/issues/334))
-- [Eyedropper API](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/EyeDropper/explainer.md) (see [TAG review](https://github.com/w3ctag/design-reviews/issues/587))
-- WebGPU
-
-
-## Use cases
-
+- A format for APIs to expose colors to the developer. Some of the APIs in need for this are:
+    - Canvas API (see [Canvas High Dynamic Range](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md))
+    - CSS OM
+    - SVG DOM
+    - HTML `<input type="color">` or its successor (see [Open UI](https://github.com/openui/open-ui/issues/334))
+    - [Eyedropper API](https://github.com/MicrosoftEdge/MSEdgeExplainers/blob/main/EyeDropper/explainer.md) (see [TAG review](https://github.com/w3ctag/design-reviews/issues/587))
+    - WebGPU
 - Lossless color space conversion (e.g. LCH → P3) by default, optional gamut mapping.
 - Color manipulation (e.g. making a color darker by reducing its LCH lightness) with choice of manipulation color space
 - Interpolation (e.g. mixing two colors, compositing, generating color scales) with choice of interpolation color space
@@ -56,7 +51,8 @@ Usable without error by those with little, powerful for those with much.
 
 ## Predefined color spaces
 
-This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/css-color-4/) and [Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md).All RGB spaces are defined over the extended range.
+This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/css-color-4/) and [Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md).
+All RGB spaces are defined over the extended range.
 
 ### SDR
 
@@ -77,7 +73,6 @@ This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/
 
 - `rec2100-pq` *(Netflix, Canvas HDR)*
 - `rec2100-hlg` *(BBC, Canvas HDR)*
-
 
 ## API sketch
 
@@ -136,7 +131,7 @@ Another possibility for relative manipulations:
 color.set("lch", "l", l => l * 1.2);
 ```
 
-### Getting D65 relative luminance, calculating WCAG 2.1 contrast
+### Calculating WCAG 2.1 contrast
 
 This is straightforward, but could also be built-in as a contrast method.
 
@@ -152,8 +147,30 @@ if (l1 > l2) {
     [l1, l2] = [l2, l1];
 }
 
-contrast = (l2 + 0.05)/(l1 + 0.05);
+contrast = (l2 + 0.05) / (l1 + 0.05);
 
+```
+
+### Defining new color spaces
+
+```js
+// TBD
+```
+
+### Color spaces from ICC profiles
+
+```js
+let cmyk = ColorSpace.fromICCProfile("./cmyk-profile.icc", {
+	name: "fogra-coated",
+	coords: {
+		c: { min: 0, max: 100 },
+		m: { min: 0, max: 100 },
+		y: { min: 0, max: 100 },
+		k: { min: 0, max: 100 },
+	}
+});
+let magenta = new Color(cmyk, [0, 100, 0, 0]);
+let lightMagenta = magenta.set("oklch", "l", l => l * 1.2);
 ```
 
 ## Decisions
@@ -171,4 +188,4 @@ Ths simplifies use of HDR, especially on platforms like WebGPU or WebGL which ar
 
 An earlier version of this draft had `iccProfile` as a property of `ColorSpace` objects.
 However, that would require the entire API to be async, which significantly complicates use cases.
-Therefore, it was deemed better to have an async `ColorSpace.load()` method that returns a regular `ColorSpace` object.
+Therefore, it was deemed better to have an async `ColorSpace.fromICCProfile()` method that returns a regular `ColorSpace` object.
