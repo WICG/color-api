@@ -70,6 +70,8 @@ This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/
 - `xyz` (relative, D65) *(for linear-light calculations)*
 - `lab` (D50) *(perceptual calculations)*
 - `lch` (D50) *(perceptual, chroma-preserving)*
+- `oklab` (D65) *(perceptual calculations)*
+- `oklch` (D65) *(perceptual, chroma-preserving)*
 
 ### HDR
 
@@ -132,30 +134,6 @@ Another possibility for relative manipulations:
 
 ```js
 color.set("lch", "l", l => l * 1.2);
-```
-
-### Extensibility: Adding `hsv` as a transformation of sRGB
-
-```js
-ColorSpace.register(new ColorSpace("hsv", {
-    base: "srgb",
-    coords: ["h", "s", "v"],
-    toBase: srgb => {
-        ...
-        return [h, s, v];
-    },
-    fromBase: hsv => {
-        ...
-        return [r, g, b]
-    },
-    serialize(c) {
-        return "hsv("
-            + c.coords.join(" ")
-            + (c.alpha < 1? "/"
-            + c.alpha : "")
-            + ")";
-    }
-}));
 ```
 
 ### Getting D65 relative luminance, calculating WCAG 2.1 contrast
