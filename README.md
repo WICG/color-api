@@ -11,12 +11,17 @@
     - WebGPU
 - Lossless color space conversion (e.g. LCH → P3) by default, optional gamut mapping.
 - Color manipulation (e.g. making a color darker by reducing its LCH lightness) with choice of manipulation color space
-- Interpolation (e.g. mixing two colors, compositing, generating color scales) with choice of interpolation color space
 - Difference between two colors (ΔE)
 - String parsing (e.g. what color is <code>rebeccapurple</code>?)
-- WCAG 2.1 (or it's successor) relative luminance (for any color space, not just sRGB)
+- WCAG 2.1 (or it's successor) color contrast (for any color space, not just sRGB)
 - Prototyping new functionality for incubation, before standardization
-- Compositing and blending (possibly Level 2)
+
+
+### Use cases postponed to L2
+
+- Interpolation (e.g. mixing two colors, compositing, generating color scales) with choice of interpolation color space
+- Compositing and blending
+- Parsing and serialization of custom formats
 
 ## Audience
 
