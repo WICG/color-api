@@ -56,7 +56,7 @@ Usable without error by those with little, powerful for those with much.
 
 ## Predefined color spaces
 
-This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/css-color-4/) and [Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md).
+This set covers the union of spaces from [CSS Color 4](https://drafts.csswg.org/css-color-4/), [CSS Color HDR](https://drafts.csswg.org/css-color-hdr/) and [Canvas HDR](https://github.com/w3c/ColorWeb-CG/blob/master/hdr_html_canvas_element.md).
 All RGB spaces are defined over the extended range.
 
 ### SDR
@@ -68,7 +68,8 @@ All RGB spaces are defined over the extended range.
 - `prophoto-rgb` *(from raw digital photos)*
 - `rec2020` *(streaming and broadcast)*
 - `rec2020-linear` *(canvas uses as connection space)*
-- `xyz` (relative, D65) *(for linear-light calculations)*
+  `xyz-d50` (relative, D50) *(for linear-light calculations)*
+- `xyz-d65` (relative, D65) *(for linear-light calculations)*
 - `lab` (D50) *(perceptual calculations)*
 - `lch` (D50) *(perceptual, chroma-preserving)*
 - `oklab` (D65) *(perceptual calculations)*
@@ -76,8 +77,9 @@ All RGB spaces are defined over the extended range.
 
 ### HDR
 
-- `rec2100-pq` *(Netflix, Canvas HDR)*
-- `rec2100-hlg` *(BBC, Canvas HDR)*
+- `rec2100-pq` *(Netflix, Canvas HDR, CSS Color HDR)*
+- `rec2100-hlg` *(BBC, Canvas HDR, , CSS Color HDR)*
+- `rec2100-linear` *(Canvas HDR, , CSS Color HDR)*
 
 ## API sketch
 
