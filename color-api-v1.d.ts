@@ -1,6 +1,3 @@
-
-
-
 // Single component of a color
 // `none` values are represented as `null`
 type Component = number | null;
