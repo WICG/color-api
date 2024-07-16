@@ -1,9 +1,5 @@
 
 
-// v1: Any of the color space ids the browser supports for CSS colors
-//    Their ids are defined in their respective specifications.
-// v2: will add ColorSpace objects and thus corresponding overloads
-type ColorSpace = string;
 
 // Single component of a color
 // `none` values are represented as `null`
@@ -17,10 +13,16 @@ type ComponentName = string;
 type CSSColorString = string;
 
 export class Color {
+	get colorSpace (): string // or object?
+	get coords (): Component[]
+	get alpha (): Component
+	
 	// Base constructor
-	// `colorSpaceId` is any of the color space ids the browser supports for CSS colors
-	// v2+ will add ColorSpace objects and corresponding overloads for the first argument
-	constructor(colorSpace: ColorSpace, coords: Component[], alpha?: Component);
+	// colorSpace:
+	// v1: Any of the color space ids the browser supports for CSS colors
+	//    Their ids are defined in their respective specifications.
+	// v2: will add ColorSpace objects and thus corresponding overloads
+	constructor(colorSpace: ColorSpace | string, coords: Component[], alpha?: Component);
 
 	// Parse a CSS color string
 	constructor(colorString: CSSColorString);
@@ -30,7 +32,7 @@ export class Color {
 
 	// Get a coord in the color’s color space
 	// v2+ will add overloads for getting a coord in a different color space (sugar for `color.to().get()`)
-	get (coord: ComponentName)
+	get (coord: ComponentName): Component
 
 	// Set a coord in the color’s color space
 	// v2+ will add overloads for:
@@ -56,4 +58,9 @@ export class Color {
 
 	// Parse a CSS color string
 	static parse (colorString: CSSColorString): Color
+}
+
+// Stub. v2 will make this constructible
+export class ColorSpace {
+	get id (): string
 }
